@@ -131,6 +131,7 @@ public class FrmClientes extends javax.swing.JFrame {
         jLabel2.setText("Código:");
 
         txtcodigo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtcodigo.setEnabled(false);
 
         txtnome.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
@@ -364,6 +365,11 @@ public class FrmClientes extends javax.swing.JFrame {
                 "Código", "Nome", "RG", "CPF", "E-mail", "Telefone", "Celular", "CEP", "Endereço", "N°", "Comp", "Bairro", "Cidade", "UF"
             }
         ));
+        tabelaClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaClientesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabelaClientes);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -399,7 +405,7 @@ public class FrmClientes extends javax.swing.JFrame {
         jTabbedPane1.addTab("Consulta de clientes", jPanel3);
 
         btnovo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnovo.setText("NOVO");
+        btnovo.setText("+ NOVO");
 
         btnsalvar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnsalvar.setText("SALVAR");
@@ -466,11 +472,47 @@ public class FrmClientes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btneditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditarActionPerformed
-        // TODO add your handling code here:
+        // BOTAO EDITAR
+        try {
+            Clientes obj = new Clientes();
+            obj.setNome(txtnome.getText());
+            obj.setRg(txtrg.getText());
+            obj.setCpf(txtcpf.getText());
+            obj.setEmail(txtemail.getText());
+            obj.setTelefone(txtfixo.getText());
+            obj.setCelular(txtcelular.getText());
+            obj.setCep(txtcep.getText());
+            obj.setEndereco(txtendereco.getText());
+            obj.setNumero(Integer.parseInt(txtnumero.getText()));
+            obj.setComplemento(txtcomplemento.getText());
+            obj.setBairro(txtbairro.getText());
+            obj.setCidade(txtcidade.getText());
+            obj.setUf(cbuf.getSelectedItem().toString());
+            
+            obj.setId(Integer.parseInt(txtcodigo.getText()));
+            
+            ClientesDAO dao = new ClientesDAO();
+            dao.alterarCliente(obj);
+                        
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, erro);
+        }
+               
     }//GEN-LAST:event_btneditarActionPerformed
 
     private void btnexcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnexcluirActionPerformed
-        // TODO add your handling code here:
+         // BOTAO EXCLUIR
+        try {
+            Clientes obj = new Clientes();
+            
+            obj.setId(Integer.parseInt(txtcodigo.getText()));
+            
+            ClientesDAO dao = new ClientesDAO();
+            dao.excluirCliente(obj);
+                        
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, erro);
+        }
     }//GEN-LAST:event_btnexcluirActionPerformed
 
     private void btnsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalvarActionPerformed
@@ -504,6 +546,26 @@ public class FrmClientes extends javax.swing.JFrame {
         // CARREGA A LISTA
         listar();
     }//GEN-LAST:event_formWindowActivated
+
+    private void tabelaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaClientesMouseClicked
+        // PEGA OS DADOS
+        jTabbedPane1.setSelectedIndex(0);
+        txtcodigo.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 0).toString());
+        txtnome.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 1).toString());
+        txtrg.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 2).toString());
+        txtcpf.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 3).toString());
+        txtemail.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 4).toString());
+        txtfixo.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 5).toString());
+        txtcelular.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 6).toString());
+        txtcep.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 7).toString());
+        txtendereco.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 8).toString());
+        txtnumero.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 9).toString());
+        txtcomplemento.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 10).toString());
+        txtbairro.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 11).toString());
+        txtcidade.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 12).toString());
+        cbuf.setSelectedItem(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 13).toString());
+        
+    }//GEN-LAST:event_tabelaClientesMouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
