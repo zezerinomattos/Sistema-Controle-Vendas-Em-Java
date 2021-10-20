@@ -88,10 +88,9 @@ public class FrmClientes extends javax.swing.JFrame {
         tabelaClientes = new javax.swing.JTable();
         jLabel17 = new javax.swing.JLabel();
         txtpesquisaCpf = new javax.swing.JTextField();
-        btnpesquisarCpf = new javax.swing.JButton();
         jLabel18 = new javax.swing.JLabel();
         txtpesquisaCod = new javax.swing.JTextField();
-        btnpesquisarCod = new javax.swing.JButton();
+        btnatualizar = new javax.swing.JButton();
         btnovo = new javax.swing.JButton();
         btnsalvar = new javax.swing.JButton();
         btneditar = new javax.swing.JButton();
@@ -345,7 +344,7 @@ public class FrmClientes extends javax.swing.JFrame {
                         .addComponent(txtbairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(txtrg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Dados pessoais", jPanel2);
@@ -395,14 +394,6 @@ public class FrmClientes extends javax.swing.JFrame {
             }
         });
 
-        btnpesquisarCpf.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnpesquisarCpf.setText("Pesquisar");
-        btnpesquisarCpf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnpesquisarCpfActionPerformed(evt);
-            }
-        });
-
         jLabel18.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel18.setText("Cód:");
 
@@ -413,11 +404,11 @@ public class FrmClientes extends javax.swing.JFrame {
             }
         });
 
-        btnpesquisarCod.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnpesquisarCod.setText("Pesquisar");
-        btnpesquisarCod.addActionListener(new java.awt.event.ActionListener() {
+        btnatualizar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnatualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/projeto/images/refresh.png"))); // NOI18N
+        btnatualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnpesquisarCodActionPerformed(evt);
+                btnatualizarActionPerformed(evt);
             }
         });
 
@@ -429,44 +420,48 @@ public class FrmClientes extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1022, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel18)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtpesquisaCod, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnpesquisarCod)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel16)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtpesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnpesquisar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel17)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtpesquisaCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnpesquisarCpf)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(jLabel16)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtpesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGap(11, 11, 11)
+                                        .addComponent(jLabel18)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtpesquisaCod, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel17)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtpesquisaCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnpesquisar))
+                            .addComponent(btnatualizar))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addGap(11, 11, 11)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel18)
+                    .addComponent(txtpesquisaCod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
                     .addComponent(txtpesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnpesquisar)
                     .addComponent(jLabel17)
                     .addComponent(txtpesquisaCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnpesquisarCpf)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel18)
-                        .addComponent(txtpesquisaCod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnpesquisarCod)))
-                .addGap(18, 18, 18)
+                    .addComponent(btnpesquisar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnatualizar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Consulta de clientes", jPanel3);
@@ -523,14 +518,14 @@ public class FrmClientes extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTabbedPane1)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnovo, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnsalvar)
                     .addComponent(btneditar)
                     .addComponent(btnexcluir))
-                .addGap(0, 14, Short.MAX_VALUE))
+                .addGap(18, 18, 18))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btneditar, btnexcluir, btnovo, btnsalvar});
@@ -637,33 +632,100 @@ public class FrmClientes extends javax.swing.JFrame {
     private void btnpesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpesquisarActionPerformed
         // BOTÃO PESQUISAR 
 
-        String nome = "%" + txtpesquisa.getText() + "%";
-        
-        ClientesDAO dao = new ClientesDAO();
-        List<Clientes> lista = dao.buscaClientePorNome(nome);
-        DefaultTableModel dados = (DefaultTableModel) tabelaClientes.getModel();
-        dados.setNumRows(0);
+        if (!txtpesquisa.getText().equals("")) {
+            String nome = "%" + txtpesquisa.getText() + "%";
 
-        for (Clientes c : lista) {
-            dados.addRow(new Object[]{
-                c.getId(),
-                c.getNome(),
-                c.getRg(),
-                c.getCpf(),
-                c.getEmail(),
-                c.getTelefone(),
-                c.getCelular(),
-                c.getCep(),
-                c.getEndereco(),
-                c.getNumero(),
-                c.getComplemento(),
-                c.getBairro(),
-                c.getCidade(),
-                c.getUf()
-            });
+            ClientesDAO dao = new ClientesDAO();
+            List<Clientes> lista = dao.buscaClientePorNome(nome);
+            DefaultTableModel dados = (DefaultTableModel) tabelaClientes.getModel();
+            dados.setNumRows(0);
+
+            for (Clientes c : lista) {
+                dados.addRow(new Object[]{
+                    c.getId(),
+                    c.getNome(),
+                    c.getRg(),
+                    c.getCpf(),
+                    c.getEmail(),
+                    c.getTelefone(),
+                    c.getCelular(),
+                    c.getCep(),
+                    c.getEndereco(),
+                    c.getNumero(),
+                    c.getComplemento(),
+                    c.getBairro(),
+                    c.getCidade(),
+                    c.getUf()
+                });
+
+            }
+
+        } else if (txtpesquisa.getText().equals("") && !txtpesquisaCpf.getText().equals("")) {
+            // BOTÃO PESQUISAR PRLO CPF
+            String cpf = "%" + txtpesquisaCpf.getText() + "%";
+
+            ClientesDAO dao = new ClientesDAO();
+            List<Clientes> lista = dao.buscaClientePorCpf(cpf);
+            DefaultTableModel dados = (DefaultTableModel) tabelaClientes.getModel();
+            dados.setNumRows(0);
+
+            for (Clientes c : lista) {
+                dados.addRow(new Object[]{
+                    c.getId(),
+                    c.getNome(),
+                    c.getRg(),
+                    c.getCpf(),
+                    c.getEmail(),
+                    c.getTelefone(),
+                    c.getCelular(),
+                    c.getCep(),
+                    c.getEndereco(),
+                    c.getNumero(),
+                    c.getComplemento(),
+                    c.getBairro(),
+                    c.getCidade(),
+                    c.getUf()
+                });
+
+            }
+        } else if (!txtpesquisaCod.getText().equals("")) {
+            // BOTÃO PESQUISAR PRLO COD
+
+            try {
+
+                int id = Integer.parseInt(txtpesquisaCod.getText());
+
+                ClientesDAO dao = new ClientesDAO();
+                List<Clientes> lista = dao.buscaClientePorCod(id);
+                DefaultTableModel dados = (DefaultTableModel) tabelaClientes.getModel();
+                dados.setNumRows(0);
+
+                for (Clientes c : lista) {
+                    dados.addRow(new Object[]{
+                        c.getId(),
+                        c.getNome(),
+                        c.getRg(),
+                        c.getCpf(),
+                        c.getEmail(),
+                        c.getTelefone(),
+                        c.getCelular(),
+                        c.getCep(),
+                        c.getEndereco(),
+                        c.getNumero(),
+                        c.getComplemento(),
+                        c.getBairro(),
+                        c.getCidade(),
+                        c.getUf()
+                    });
+
+                }
+
+            } catch (Exception erro) {
+                JOptionPane.showMessageDialog(null, "DIGITAR APENAS NUMEROS: " + erro);
+
+            }
 
         }
-        
     }//GEN-LAST:event_btnpesquisarActionPerformed
 
     private void txtpesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpesquisaKeyPressed
@@ -703,81 +765,14 @@ public class FrmClientes extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtpesquisaCpfKeyPressed
 
-    private void btnpesquisarCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpesquisarCpfActionPerformed
-        
-        // BOTÃO PESQUISAR PRLO CPF
-
-        String cpf = "%" + txtpesquisaCpf.getText() + "%";
-        
-        ClientesDAO dao = new ClientesDAO();
-        List<Clientes> lista = dao.buscaClientePorCpf(cpf);
-        DefaultTableModel dados = (DefaultTableModel) tabelaClientes.getModel();
-        dados.setNumRows(0);
-
-        for (Clientes c : lista) {
-            dados.addRow(new Object[]{
-                c.getId(),
-                c.getNome(),
-                c.getRg(),
-                c.getCpf(),
-                c.getEmail(),
-                c.getTelefone(),
-                c.getCelular(),
-                c.getCep(),
-                c.getEndereco(),
-                c.getNumero(),
-                c.getComplemento(),
-                c.getBairro(),
-                c.getCidade(),
-                c.getUf()
-            });
-
-        }
-        
-    }//GEN-LAST:event_btnpesquisarCpfActionPerformed
-
     private void txtpesquisaCodKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpesquisaCodKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtpesquisaCodKeyPressed
 
-    private void btnpesquisarCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpesquisarCodActionPerformed
-         // BOTÃO PESQUISAR PRLO COD
-
-        try {
-            
-            int id = Integer.parseInt(txtpesquisaCod.getText());
-        
-        ClientesDAO dao = new ClientesDAO();
-        List<Clientes> lista = dao.buscaClientePorCod(id);
-        DefaultTableModel dados = (DefaultTableModel) tabelaClientes.getModel();
-        dados.setNumRows(0);
-
-        for (Clientes c : lista) {
-            dados.addRow(new Object[]{
-                c.getId(),
-                c.getNome(),
-                c.getRg(),
-                c.getCpf(),
-                c.getEmail(),
-                c.getTelefone(),
-                c.getCelular(),
-                c.getCep(),
-                c.getEndereco(),
-                c.getNumero(),
-                c.getComplemento(),
-                c.getBairro(),
-                c.getCidade(),
-                c.getUf()
-            });
-
-        }
-            
-        } catch (Exception erro) {
-            JOptionPane.showMessageDialog(null, "DIGITAR APENAS NUMEROS: " + erro);
-            
-        }
-        
-    }//GEN-LAST:event_btnpesquisarCodActionPerformed
+    private void btnatualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnatualizarActionPerformed
+        //NOTÃO PARA ATUALIZAR TABELA
+        listar();
+    }//GEN-LAST:event_btnatualizarActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -812,12 +807,11 @@ public class FrmClientes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnatualizar;
     private javax.swing.JButton btneditar;
     private javax.swing.JButton btnexcluir;
     private javax.swing.JButton btnovo;
     private javax.swing.JButton btnpesquisar;
-    private javax.swing.JButton btnpesquisarCod;
-    private javax.swing.JButton btnpesquisarCpf;
     private javax.swing.JButton btnsalvar;
     private javax.swing.JComboBox<String> cbuf;
     private javax.swing.JLabel jLabel1;
