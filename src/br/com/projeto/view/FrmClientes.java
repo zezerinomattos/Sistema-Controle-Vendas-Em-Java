@@ -1,4 +1,3 @@
-
 package br.com.projeto.view;
 
 import br.com.projeto.dao.ClientesDAO;
@@ -9,15 +8,15 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class FrmClientes extends javax.swing.JFrame {
-    
+
     //METODO LISTAR NA TABELA
-    public void listar(){
+    public void listar() {
         ClientesDAO dao = new ClientesDAO();
         List<Clientes> lista = dao.listaClientes();
         DefaultTableModel dados = (DefaultTableModel) tabelaClientes.getModel();
         dados.setNumRows(0);
-        
-        for(Clientes c: lista){
+
+        for (Clientes c : lista) {
             dados.addRow(new Object[]{
                 c.getId(),
                 c.getNome(),
@@ -34,13 +33,11 @@ public class FrmClientes extends javax.swing.JFrame {
                 c.getCidade(),
                 c.getUf()
             });
-            
+
         }
-        
-        
+
     }
 
-   
     public FrmClientes() {
         initComponents();
         this.getContentPane().setBackground(Color.WHITE);
@@ -85,10 +82,16 @@ public class FrmClientes extends javax.swing.JFrame {
         txtrg = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        txtpesquisa = new javax.swing.JTextField();
+        btnpesquisar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaClientes = new javax.swing.JTable();
+        jLabel17 = new javax.swing.JLabel();
+        txtpesquisaCpf = new javax.swing.JTextField();
+        btnpesquisarCpf = new javax.swing.JButton();
+        jLabel18 = new javax.swing.JLabel();
+        txtpesquisaCod = new javax.swing.JTextField();
+        btnpesquisarCod = new javax.swing.JButton();
         btnovo = new javax.swing.JButton();
         btnsalvar = new javax.swing.JButton();
         btneditar = new javax.swing.JButton();
@@ -290,7 +293,7 @@ public class FrmClientes extends javax.swing.JFrame {
                         .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cbuf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addContainerGap(111, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -352,10 +355,20 @@ public class FrmClientes extends javax.swing.JFrame {
         jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel16.setText("Nome:");
 
-        jTextField10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtpesquisa.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtpesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtpesquisaKeyPressed(evt);
+            }
+        });
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton1.setText("Pesquisar");
+        btnpesquisar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnpesquisar.setText("Pesquisar");
+        btnpesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnpesquisarActionPerformed(evt);
+            }
+        });
 
         tabelaClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -372,6 +385,42 @@ public class FrmClientes extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tabelaClientes);
 
+        jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel17.setText("CPF");
+
+        txtpesquisaCpf.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtpesquisaCpf.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtpesquisaCpfKeyPressed(evt);
+            }
+        });
+
+        btnpesquisarCpf.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnpesquisarCpf.setText("Pesquisar");
+        btnpesquisarCpf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnpesquisarCpfActionPerformed(evt);
+            }
+        });
+
+        jLabel18.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel18.setText("Cód:");
+
+        txtpesquisaCod.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtpesquisaCod.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtpesquisaCodKeyPressed(evt);
+            }
+        });
+
+        btnpesquisarCod.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnpesquisarCod.setText("Pesquisar");
+        btnpesquisarCod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnpesquisarCodActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -379,14 +428,25 @@ public class FrmClientes extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1022, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtpesquisaCod, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnpesquisarCod)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel16)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtpesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
-                        .addGap(0, 475, Short.MAX_VALUE)))
+                        .addComponent(btnpesquisar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel17)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtpesquisaCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnpesquisarCpf)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -395,8 +455,15 @@ public class FrmClientes extends javax.swing.JFrame {
                 .addGap(17, 17, 17)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(txtpesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnpesquisar)
+                    .addComponent(jLabel17)
+                    .addComponent(txtpesquisaCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnpesquisarCpf)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel18)
+                        .addComponent(txtpesquisaCod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnpesquisarCod)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(85, Short.MAX_VALUE))
@@ -488,28 +555,28 @@ public class FrmClientes extends javax.swing.JFrame {
             obj.setBairro(txtbairro.getText());
             obj.setCidade(txtcidade.getText());
             obj.setUf(cbuf.getSelectedItem().toString());
-            
+
             obj.setId(Integer.parseInt(txtcodigo.getText()));
-            
+
             ClientesDAO dao = new ClientesDAO();
             dao.alterarCliente(obj);
-                        
+
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, erro);
         }
-               
+
     }//GEN-LAST:event_btneditarActionPerformed
 
     private void btnexcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnexcluirActionPerformed
-         // BOTAO EXCLUIR
+        // BOTAO EXCLUIR
         try {
             Clientes obj = new Clientes();
-            
+
             obj.setId(Integer.parseInt(txtcodigo.getText()));
-            
+
             ClientesDAO dao = new ClientesDAO();
             dao.excluirCliente(obj);
-                        
+
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, erro);
         }
@@ -532,14 +599,14 @@ public class FrmClientes extends javax.swing.JFrame {
             obj.setBairro(txtbairro.getText());
             obj.setCidade(txtcidade.getText());
             obj.setUf(cbuf.getSelectedItem().toString());
-            
+
             ClientesDAO dao = new ClientesDAO();
             dao.cadastrarCliente(obj);
-                        
+
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, erro);
         }
-        
+
     }//GEN-LAST:event_btnsalvarActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
@@ -564,8 +631,153 @@ public class FrmClientes extends javax.swing.JFrame {
         txtbairro.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 11).toString());
         txtcidade.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 12).toString());
         cbuf.setSelectedItem(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 13).toString());
-        
+
     }//GEN-LAST:event_tabelaClientesMouseClicked
+
+    private void btnpesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpesquisarActionPerformed
+        // BOTÃO PESQUISAR 
+
+        String nome = "%" + txtpesquisa.getText() + "%";
+        
+        ClientesDAO dao = new ClientesDAO();
+        List<Clientes> lista = dao.buscaClientePorNome(nome);
+        DefaultTableModel dados = (DefaultTableModel) tabelaClientes.getModel();
+        dados.setNumRows(0);
+
+        for (Clientes c : lista) {
+            dados.addRow(new Object[]{
+                c.getId(),
+                c.getNome(),
+                c.getRg(),
+                c.getCpf(),
+                c.getEmail(),
+                c.getTelefone(),
+                c.getCelular(),
+                c.getCep(),
+                c.getEndereco(),
+                c.getNumero(),
+                c.getComplemento(),
+                c.getBairro(),
+                c.getCidade(),
+                c.getUf()
+            });
+
+        }
+        
+    }//GEN-LAST:event_btnpesquisarActionPerformed
+
+    private void txtpesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpesquisaKeyPressed
+        // PESQUISANDO AO DIGITAR NO CAMPO PESQUISAR 
+
+        String nome = "%" + txtpesquisa.getText() + "%";
+
+        ClientesDAO dao = new ClientesDAO();
+        List<Clientes> lista = dao.buscaClientePorNome(nome);
+        DefaultTableModel dados = (DefaultTableModel) tabelaClientes.getModel();
+        dados.setNumRows(0);
+
+        for (Clientes c : lista) {
+            dados.addRow(new Object[]{
+                c.getId(),
+                c.getNome(),
+                c.getRg(),
+                c.getCpf(),
+                c.getEmail(),
+                c.getTelefone(),
+                c.getCelular(),
+                c.getCep(),
+                c.getEndereco(),
+                c.getNumero(),
+                c.getComplemento(),
+                c.getBairro(),
+                c.getCidade(),
+                c.getUf()
+            });
+
+        }
+
+
+    }//GEN-LAST:event_txtpesquisaKeyPressed
+
+    private void txtpesquisaCpfKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpesquisaCpfKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtpesquisaCpfKeyPressed
+
+    private void btnpesquisarCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpesquisarCpfActionPerformed
+        
+        // BOTÃO PESQUISAR PRLO CPF
+
+        String cpf = "%" + txtpesquisaCpf.getText() + "%";
+        
+        ClientesDAO dao = new ClientesDAO();
+        List<Clientes> lista = dao.buscaClientePorCpf(cpf);
+        DefaultTableModel dados = (DefaultTableModel) tabelaClientes.getModel();
+        dados.setNumRows(0);
+
+        for (Clientes c : lista) {
+            dados.addRow(new Object[]{
+                c.getId(),
+                c.getNome(),
+                c.getRg(),
+                c.getCpf(),
+                c.getEmail(),
+                c.getTelefone(),
+                c.getCelular(),
+                c.getCep(),
+                c.getEndereco(),
+                c.getNumero(),
+                c.getComplemento(),
+                c.getBairro(),
+                c.getCidade(),
+                c.getUf()
+            });
+
+        }
+        
+    }//GEN-LAST:event_btnpesquisarCpfActionPerformed
+
+    private void txtpesquisaCodKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpesquisaCodKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtpesquisaCodKeyPressed
+
+    private void btnpesquisarCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpesquisarCodActionPerformed
+         // BOTÃO PESQUISAR PRLO COD
+
+        try {
+            
+            int id = Integer.parseInt(txtpesquisaCod.getText());
+        
+        ClientesDAO dao = new ClientesDAO();
+        List<Clientes> lista = dao.buscaClientePorCod(id);
+        DefaultTableModel dados = (DefaultTableModel) tabelaClientes.getModel();
+        dados.setNumRows(0);
+
+        for (Clientes c : lista) {
+            dados.addRow(new Object[]{
+                c.getId(),
+                c.getNome(),
+                c.getRg(),
+                c.getCpf(),
+                c.getEmail(),
+                c.getTelefone(),
+                c.getCelular(),
+                c.getCep(),
+                c.getEndereco(),
+                c.getNumero(),
+                c.getComplemento(),
+                c.getBairro(),
+                c.getCidade(),
+                c.getUf()
+            });
+
+        }
+            
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "DIGITAR APENAS NUMEROS: " + erro);
+            
+        }
+        
+    }//GEN-LAST:event_btnpesquisarCodActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -603,9 +815,11 @@ public class FrmClientes extends javax.swing.JFrame {
     private javax.swing.JButton btneditar;
     private javax.swing.JButton btnexcluir;
     private javax.swing.JButton btnovo;
+    private javax.swing.JButton btnpesquisar;
+    private javax.swing.JButton btnpesquisarCod;
+    private javax.swing.JButton btnpesquisarCpf;
     private javax.swing.JButton btnsalvar;
     private javax.swing.JComboBox<String> cbuf;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -614,6 +828,8 @@ public class FrmClientes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -628,7 +844,6 @@ public class FrmClientes extends javax.swing.JFrame {
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField10;
     private javax.swing.JTable tabelaClientes;
     private javax.swing.JTextField txtbairro;
     private javax.swing.JFormattedTextField txtcelular;
@@ -642,6 +857,9 @@ public class FrmClientes extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField txtfixo;
     private javax.swing.JTextField txtnome;
     private javax.swing.JTextField txtnumero;
+    private javax.swing.JTextField txtpesquisa;
+    private javax.swing.JTextField txtpesquisaCod;
+    private javax.swing.JTextField txtpesquisaCpf;
     private javax.swing.JTextField txtrg;
     // End of variables declaration//GEN-END:variables
 }
