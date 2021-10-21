@@ -2,6 +2,7 @@ package br.com.projeto.dao;
 
 import br.com.projeto.jdbc.ConnectionFactory;
 import br.com.projeto.model.Clientes;
+import br.com.projeto.webservices.WebServiceCep;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import java.sql.Connection;
@@ -222,7 +223,7 @@ public class ClientesDAO {
 
             while (rs.next()) {
                 Clientes obj = new Clientes();
-   
+
                 obj.setId(rs.getInt("id"));
                 obj.setNome(rs.getString("nome"));
                 obj.setRg(rs.getString("rg"));
@@ -238,7 +239,7 @@ public class ClientesDAO {
                 obj.setCidade(rs.getString("cidade"));
                 obj.setUf(rs.getString("estado"));
 
-                lista.add(obj);              
+                lista.add(obj);
 
             }
             return lista;
@@ -304,12 +305,12 @@ public class ClientesDAO {
 
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, cpf);
-            
+
             ResultSet rs = stmt.executeQuery();
             Clientes obj = new Clientes();
-            
+
             if (rs.next()) {
- 
+
                 obj.setId(rs.getInt("id"));
                 obj.setNome(rs.getString("nome"));
                 obj.setRg(rs.getString("rg"));
@@ -333,6 +334,7 @@ public class ClientesDAO {
         }
 
     }
+
     //METODO CONSULTA CLIENTE POR CODIGO
     public Clientes consultaPorCod(int id) {
 
@@ -343,12 +345,12 @@ public class ClientesDAO {
 
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1, id);
-            
+
             ResultSet rs = stmt.executeQuery();
             Clientes obj = new Clientes();
-            
+
             if (rs.next()) {
- 
+
                 obj.setId(rs.getInt("id"));
                 obj.setNome(rs.getString("nome"));
                 obj.setRg(rs.getString("rg"));
@@ -368,6 +370,27 @@ public class ClientesDAO {
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "CLIENTE NÃO ENCONTRADO!");
+            return null;
+        }
+
+    }
+
+    //BUSCA CEP
+    public Clientes buscaCep(String cep) {
+
+        WebServiceCep webServiceCep = WebServiceCep.searchCep(cep);
+
+        Clientes obj = new Clientes();
+
+        if (webServiceCep.wasSuccessful()) {
+            obj.setEndereco(webServiceCep.getLogradouroFull());
+            obj.setCidade(webServiceCep.getCidade());
+            obj.setBairro(webServiceCep.getBairro());
+            obj.setUf(webServiceCep.getUf());
+            return obj;
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro numero: " + webServiceCep.getResulCode());
+            JOptionPane.showMessageDialog(null, "Descrição do erro: " + webServiceCep.getResultText());
             return null;
         }
 
