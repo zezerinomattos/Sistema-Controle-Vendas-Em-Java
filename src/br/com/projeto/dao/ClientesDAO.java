@@ -61,7 +61,7 @@ public class ClientesDAO {
 
 //          1 passo - criar o comando sql  
             String sql = "update tb_clientes set nome=?,rg=? ,cpf=? ,email=? ,telefone=? ,celular=? ,cep=? ,"
-                    + "endereco=?,numero=? ,complemento=?,bairro=? ,cidade=?, estado=? where id=?";                   
+                    + "endereco=?,numero=? ,complemento=?,bairro=? ,cidade=?, estado=? where id=?";
 
 //          2 passo - conectar o banco de dados e organizar os comandos SQL            
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -158,6 +158,7 @@ public class ClientesDAO {
         }
 
     }
+
     //METODO BUSCAR CLIENTE POR NOME
     public List<Clientes> buscaClientePorNome(String nome) {
 
@@ -202,6 +203,7 @@ public class ClientesDAO {
             return null;
         }
     }
+
     //BUSCAR CLIENTE POR CPF
     public List<Clientes> buscaClientePorCpf(String cpf) {
 
@@ -220,7 +222,7 @@ public class ClientesDAO {
 
             while (rs.next()) {
                 Clientes obj = new Clientes();
-
+   
                 obj.setId(rs.getInt("id"));
                 obj.setNome(rs.getString("nome"));
                 obj.setRg(rs.getString("rg"));
@@ -236,7 +238,7 @@ public class ClientesDAO {
                 obj.setCidade(rs.getString("cidade"));
                 obj.setUf(rs.getString("estado"));
 
-                lista.add(obj);
+                lista.add(obj);              
 
             }
             return lista;
@@ -246,7 +248,7 @@ public class ClientesDAO {
             return null;
         }
     }
-    
+
     //BUSCAR CLIENTE POR CODIGO ID
     public List<Clientes> buscaClientePorCod(int id) {
 
@@ -256,7 +258,7 @@ public class ClientesDAO {
             List<Clientes> lista = new ArrayList<>();
 
             //Criando o comando sql, organizando e executando
-            String sql = "select*from tb_clientes where id like ?";
+            String sql = "select*from tb_clientes where id = ?";
 
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1, id);
@@ -291,4 +293,84 @@ public class ClientesDAO {
             return null;
         }
     }
+
+    //METODO CONSULTA CLIENTE POR CPF
+    public Clientes consultaPorCpf(String cpf) {
+
+        try {
+
+            //Criando o comando sql, organizando e executando
+            String sql = "select*from tb_clientes where cpf = ?";
+
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, cpf);
+            
+            ResultSet rs = stmt.executeQuery();
+            Clientes obj = new Clientes();
+            
+            if (rs.next()) {
+ 
+                obj.setId(rs.getInt("id"));
+                obj.setNome(rs.getString("nome"));
+                obj.setRg(rs.getString("rg"));
+                obj.setCpf(rs.getString("cpf"));
+                obj.setEmail(rs.getString("email"));
+                obj.setTelefone(rs.getString("telefone"));
+                obj.setCelular(rs.getString("celular"));
+                obj.setCep(rs.getString("cep"));
+                obj.setEndereco(rs.getString("endereco"));
+                obj.setNumero(rs.getInt("numero"));
+                obj.setComplemento(rs.getString("complemento"));
+                obj.setBairro(rs.getString("bairro"));
+                obj.setCidade(rs.getString("cidade"));
+                obj.setUf(rs.getString("estado"));
+            }
+            return obj;
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "CLIENTE NÃO ENCONTRADO!");
+            return null;
+        }
+
+    }
+    //METODO CONSULTA CLIENTE POR CODIGO
+    public Clientes consultaPorCod(int id) {
+
+        try {
+
+            //Criando o comando sql, organizando e executando
+            String sql = "select*from tb_clientes where id = ?";
+
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, id);
+            
+            ResultSet rs = stmt.executeQuery();
+            Clientes obj = new Clientes();
+            
+            if (rs.next()) {
+ 
+                obj.setId(rs.getInt("id"));
+                obj.setNome(rs.getString("nome"));
+                obj.setRg(rs.getString("rg"));
+                obj.setCpf(rs.getString("cpf"));
+                obj.setEmail(rs.getString("email"));
+                obj.setTelefone(rs.getString("telefone"));
+                obj.setCelular(rs.getString("celular"));
+                obj.setCep(rs.getString("cep"));
+                obj.setEndereco(rs.getString("endereco"));
+                obj.setNumero(rs.getInt("numero"));
+                obj.setComplemento(rs.getString("complemento"));
+                obj.setBairro(rs.getString("bairro"));
+                obj.setCidade(rs.getString("cidade"));
+                obj.setUf(rs.getString("estado"));
+            }
+            return obj;
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "CLIENTE NÃO ENCONTRADO!");
+            return null;
+        }
+
+    }
+
 }
