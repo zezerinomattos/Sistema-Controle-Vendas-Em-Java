@@ -898,18 +898,22 @@ public class FrmClientes extends javax.swing.JFrame {
 
     private void txtcepKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcepKeyPressed
         // CARREGANDO CEP NO FORMULARIO
+        try {
+            if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+                Clientes obj = new Clientes();
+                ClientesDAO dao = new ClientesDAO();
+                obj = dao.buscaCep(txtcep.getText());
 
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            Clientes obj = new Clientes();
-            ClientesDAO dao = new ClientesDAO();
-            obj = dao.buscaCep(txtcep.getText());
+                txtendereco.setText(obj.getEndereco());
+                txtbairro.setText(obj.getBairro());
+                txtcidade.setText(obj.getCidade());
+                cbuf.setSelectedItem(obj.getUf());
 
-            txtendereco.setText(obj.getEndereco());
-            txtbairro.setText(obj.getBairro());
-            txtcidade.setText(obj.getCidade());
-            cbuf.setSelectedItem(obj.getUf());
-            
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "COLOQUE O ENDEREÇO MANUALMENTE E CONTINUE COM O CADASTRO!");
         }
+
 
     }//GEN-LAST:event_txtcepKeyPressed
 

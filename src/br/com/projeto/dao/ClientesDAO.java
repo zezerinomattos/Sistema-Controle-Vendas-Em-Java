@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 
 public class ClientesDAO {
 //CONEXÃO COM BANCO
+
     private Connection con;
 
     public ClientesDAO() {
@@ -389,8 +390,9 @@ public class ClientesDAO {
             obj.setUf(webServiceCep.getUf());
             return obj;
         } else {
-            JOptionPane.showMessageDialog(null, "Erro numero: " + webServiceCep.getResulCode());
-            JOptionPane.showMessageDialog(null, "Descrição do erro: " + webServiceCep.getResultText());
+//            JOptionPane.showMessageDialog(null, "Erro numero: " + webServiceCep.getResulCode());
+//            JOptionPane.showMessageDialog(null, "Descrição do erro: " + webServiceCep.getResultText());
+            JOptionPane.showMessageDialog(null, "CEP NÃO ENCONTRADO, VERIFIQUE SUA CONEXÃO COM A INTERNET");
             return null;
         }
 

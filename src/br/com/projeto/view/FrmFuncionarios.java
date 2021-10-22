@@ -1,8 +1,6 @@
 package br.com.projeto.view;
 
-import br.com.projeto.dao.ClientesDAO;
 import br.com.projeto.dao.FuncionariosDAO;
-import br.com.projeto.model.Clientes;
 import br.com.projeto.model.Funcionarios;
 import br.com.projeto.model.Utilitarios;
 import java.awt.Color;
@@ -613,11 +611,14 @@ public class FrmFuncionarios extends javax.swing.JFrame {
     private void btneditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditarActionPerformed
         // BOTAO EDITAR
         try {
-            Clientes obj = new Clientes();
+            Funcionarios obj = new Funcionarios();
             obj.setNome(txtnome.getText());
             obj.setRg(txtrg.getText());
             obj.setCpf(txtcpf.getText());
             obj.setEmail(txtemail.getText());
+            obj.setSenha(txtsenha.getText());
+            obj.setCargo(txtcargo.getText());
+            obj.setNivel_acesso(cbnivel.getSelectedItem().toString());
             obj.setTelefone(txtfixo.getText());
             obj.setCelular(txtcelular.getText());
             obj.setCep(txtcep.getText());
@@ -630,8 +631,8 @@ public class FrmFuncionarios extends javax.swing.JFrame {
 
             obj.setId(Integer.parseInt(txtcodigo.getText()));
 
-            ClientesDAO dao = new ClientesDAO();
-            dao.alterarCliente(obj);
+            FuncionariosDAO dao = new FuncionariosDAO();
+            dao.alterarFuncionarios(obj);
             new Utilitarios().LimpaTela(painel_dadosFunc);
             txtcodigo.setEditable(true);
 
@@ -644,12 +645,12 @@ public class FrmFuncionarios extends javax.swing.JFrame {
     private void btnexcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnexcluirActionPerformed
         // BOTAO EXCLUIR
         try {
-            Clientes obj = new Clientes();
+            Funcionarios obj = new Funcionarios();
 
             obj.setId(Integer.parseInt(txtcodigo.getText()));
 
-            ClientesDAO dao = new ClientesDAO();
-            dao.excluirCliente(obj);
+            FuncionariosDAO dao = new FuncionariosDAO();
+            dao.excluirFucionarios(obj);
 
             new Utilitarios().LimpaTela(painel_dadosFunc);
             txtcodigo.setEditable(true);
@@ -667,7 +668,7 @@ public class FrmFuncionarios extends javax.swing.JFrame {
             obj.setRg(txtrg.getText());
             obj.setCpf(txtcpf.getText());
             obj.setEmail(txtemail.getText());
-            obj.setSenha(txtsenha.getText());            
+            obj.setSenha(txtsenha.getText());
             obj.setCargo(txtcargo.getText());
             obj.setNivel_acesso(cbnivel.getSelectedItem().toString());
             obj.setTelefone(txtfixo.getText());
@@ -706,22 +707,25 @@ public class FrmFuncionarios extends javax.swing.JFrame {
         txtrg.setText(tabelaFuncionarios.getValueAt(tabelaFuncionarios.getSelectedRow(), 2).toString());
         txtcpf.setText(tabelaFuncionarios.getValueAt(tabelaFuncionarios.getSelectedRow(), 3).toString());
         txtemail.setText(tabelaFuncionarios.getValueAt(tabelaFuncionarios.getSelectedRow(), 4).toString());
-        txtfixo.setText(tabelaFuncionarios.getValueAt(tabelaFuncionarios.getSelectedRow(), 5).toString());
-        txtcelular.setText(tabelaFuncionarios.getValueAt(tabelaFuncionarios.getSelectedRow(), 6).toString());
-        txtcep.setText(tabelaFuncionarios.getValueAt(tabelaFuncionarios.getSelectedRow(), 7).toString());
-        txtendereco.setText(tabelaFuncionarios.getValueAt(tabelaFuncionarios.getSelectedRow(), 8).toString());
-        txtnumero.setText(tabelaFuncionarios.getValueAt(tabelaFuncionarios.getSelectedRow(), 9).toString());
-        txtcomplemento.setText(tabelaFuncionarios.getValueAt(tabelaFuncionarios.getSelectedRow(), 10).toString());
-        txtbairro.setText(tabelaFuncionarios.getValueAt(tabelaFuncionarios.getSelectedRow(), 11).toString());
-        txtcidade.setText(tabelaFuncionarios.getValueAt(tabelaFuncionarios.getSelectedRow(), 12).toString());
-        cbuf.setSelectedItem(tabelaFuncionarios.getValueAt(tabelaFuncionarios.getSelectedRow(), 13).toString());
+        txtsenha.setText(tabelaFuncionarios.getValueAt(tabelaFuncionarios.getSelectedRow(), 5).toString());
+        txtcargo.setText(tabelaFuncionarios.getValueAt(tabelaFuncionarios.getSelectedRow(), 6).toString());
+        cbnivel.setSelectedItem(tabelaFuncionarios.getValueAt(tabelaFuncionarios.getSelectedRow(), 7).toString());
+        txtfixo.setText(tabelaFuncionarios.getValueAt(tabelaFuncionarios.getSelectedRow(), 8).toString());
+        txtcelular.setText(tabelaFuncionarios.getValueAt(tabelaFuncionarios.getSelectedRow(), 9).toString());
+        txtcep.setText(tabelaFuncionarios.getValueAt(tabelaFuncionarios.getSelectedRow(), 10).toString());
+        txtendereco.setText(tabelaFuncionarios.getValueAt(tabelaFuncionarios.getSelectedRow(), 11).toString());
+        txtnumero.setText(tabelaFuncionarios.getValueAt(tabelaFuncionarios.getSelectedRow(), 12).toString());
+        txtcomplemento.setText(tabelaFuncionarios.getValueAt(tabelaFuncionarios.getSelectedRow(), 13).toString());
+        txtbairro.setText(tabelaFuncionarios.getValueAt(tabelaFuncionarios.getSelectedRow(), 14).toString());
+        txtcidade.setText(tabelaFuncionarios.getValueAt(tabelaFuncionarios.getSelectedRow(), 15).toString());
+        cbuf.setSelectedItem(tabelaFuncionarios.getValueAt(tabelaFuncionarios.getSelectedRow(), 16).toString());
 
         txtcodigo.setEditable(false);
 
     }//GEN-LAST:event_tabelaFuncionariosMouseClicked
-
+    // BOTÃO PESQUISAR FORMULARIO DA TABELA
     private void btnpesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpesquisarActionPerformed
-        // BOTÃO PESQUISAR FORMULARIO DA TABELA
+        // PRSQUISA POR CODIGO
 
         if (!txtpesquisaCod.getText().equals("")) {
 
@@ -729,18 +733,21 @@ public class FrmFuncionarios extends javax.swing.JFrame {
 
                 int id = Integer.parseInt(txtpesquisaCod.getText());
 
-                ClientesDAO dao = new ClientesDAO();
-                List<Clientes> lista = dao.buscaClientePorCod(id);
+                FuncionariosDAO dao = new FuncionariosDAO();
+                List<Funcionarios> lista = dao.buscaFuncionarioPorCod(id);
                 DefaultTableModel dados = (DefaultTableModel) tabelaFuncionarios.getModel();
                 dados.setNumRows(0);
 
-                for (Clientes c : lista) {
+                for (Funcionarios c : lista) {
                     dados.addRow(new Object[]{
                         c.getId(),
                         c.getNome(),
                         c.getRg(),
                         c.getCpf(),
                         c.getEmail(),
+                        c.getSenha(),
+                        c.getCargo(),
+                        c.getNivel_acesso(),
                         c.getTelefone(),
                         c.getCelular(),
                         c.getCep(),
@@ -760,23 +767,26 @@ public class FrmFuncionarios extends javax.swing.JFrame {
             }
 
         } else if (!txtpesquisa.getText().equals("") && txtpesquisaCod.getText().equals("")) {
-
+            // PRSQUISA POR NOME
             try {
 
                 String nome = "%" + txtpesquisa.getText() + "%";
 
-                ClientesDAO dao = new ClientesDAO();
-                List<Clientes> lista = dao.buscaClientePorNome(nome);
+                FuncionariosDAO dao = new FuncionariosDAO();
+                List<Funcionarios> lista = dao.buscaFuncionarioPorNome(nome);
                 DefaultTableModel dados = (DefaultTableModel) tabelaFuncionarios.getModel();
                 dados.setNumRows(0);
 
-                for (Clientes c : lista) {
+                for (Funcionarios c : lista) {
                     dados.addRow(new Object[]{
                         c.getId(),
                         c.getNome(),
                         c.getRg(),
                         c.getCpf(),
                         c.getEmail(),
+                        c.getSenha(),
+                        c.getCargo(),
+                        c.getNivel_acesso(),
                         c.getTelefone(),
                         c.getCelular(),
                         c.getCep(),
@@ -791,27 +801,30 @@ public class FrmFuncionarios extends javax.swing.JFrame {
                 }
 
             } catch (Exception erro) {
-                JOptionPane.showMessageDialog(null, "CLIENTE NÃO ENCONTRADO!" + erro);
+                JOptionPane.showMessageDialog(null, "FUNCIONARIO NÃO ENCONTRADO!" + erro);
             }
 
         } else if (txtpesquisaCod.getText().equals("") && !txtpesquisaCpf.getText().equals("")) {
-            // BOTÃO PESQUISAR PRLO CPF
+            // BOTÃO PESQUISAR POR CPF
             try {
 
                 String cpf = "%" + txtpesquisaCpf.getText() + "%";
 
-                ClientesDAO dao = new ClientesDAO();
-                List<Clientes> lista = dao.buscaClientePorCpf(cpf);
+                FuncionariosDAO dao = new FuncionariosDAO();
+                List<Funcionarios> lista = dao.buscaFuncionariosPorCpf(cpf);
                 DefaultTableModel dados = (DefaultTableModel) tabelaFuncionarios.getModel();
                 dados.setNumRows(0);
 
-                for (Clientes c : lista) {
+                for (Funcionarios c : lista) {
                     dados.addRow(new Object[]{
                         c.getId(),
                         c.getNome(),
                         c.getRg(),
                         c.getCpf(),
                         c.getEmail(),
+                        c.getSenha(),
+                        c.getCargo(),
+                        c.getNivel_acesso(),
                         c.getTelefone(),
                         c.getCelular(),
                         c.getCep(),
@@ -837,18 +850,21 @@ public class FrmFuncionarios extends javax.swing.JFrame {
 
         String nome = "%" + txtpesquisa.getText() + "%";
 
-        ClientesDAO dao = new ClientesDAO();
-        List<Clientes> lista = dao.buscaClientePorNome(nome);
+        FuncionariosDAO dao = new FuncionariosDAO();
+        List<Funcionarios> lista = dao.buscaFuncionarioPorNome(nome);
         DefaultTableModel dados = (DefaultTableModel) tabelaFuncionarios.getModel();
         dados.setNumRows(0);
 
-        for (Clientes c : lista) {
+        for (Funcionarios c : lista) {
             dados.addRow(new Object[]{
                 c.getId(),
                 c.getNome(),
                 c.getRg(),
                 c.getCpf(),
                 c.getEmail(),
+                c.getSenha(),
+                c.getCargo(),
+                c.getNivel_acesso(),
                 c.getTelefone(),
                 c.getCelular(),
                 c.getCep(),
@@ -870,7 +886,7 @@ public class FrmFuncionarios extends javax.swing.JFrame {
     }//GEN-LAST:event_txtpesquisaCodKeyPressed
 
     private void btnatualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnatualizarActionPerformed
-        //NOTÃO PARA ATUALIZAR TABELA
+        //BOTÃO PARA ATUALIZAR TABELA
         listar();
         new Utilitarios().LimpaTela(painel_dadosFunc);
         new Utilitarios().LimpaTela(painel_tabelaFunc);
@@ -891,8 +907,8 @@ public class FrmFuncionarios extends javax.swing.JFrame {
             //BOTAO BUSCAR FORMULÁRIO DE DADOS DO CLIENTE
             try {
                 int id = Integer.parseInt(txtcodigo.getText());
-                Clientes obj = new Clientes();
-                ClientesDAO dao = new ClientesDAO();
+                Funcionarios obj = new Funcionarios();
+                FuncionariosDAO dao = new FuncionariosDAO();
 
                 obj = dao.consultaPorCod(id);
 
@@ -902,6 +918,9 @@ public class FrmFuncionarios extends javax.swing.JFrame {
                 txtrg.setText(obj.getRg());
                 txtcpf.setText(obj.getCpf());
                 txtemail.setText(obj.getEmail());
+                txtsenha.setText(obj.getSenha());
+                txtcargo.setText(obj.getCargo());
+                cbnivel.setSelectedItem(obj.getNivel_acesso());
                 txtfixo.setText(obj.getTelefone());
                 txtcelular.setText(obj.getCelular());
                 txtcep.setText(obj.getCep());
@@ -913,7 +932,7 @@ public class FrmFuncionarios extends javax.swing.JFrame {
                 cbuf.setSelectedItem(obj.getUf());
 
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "FAVOR DIGITAR UM CODIGO OU CPF VALIDO DE CLIENTE!");
+                JOptionPane.showMessageDialog(null, "FAVOR DIGITAR UM CODIGO OU CPF VALIDO DE FUNCIONARIO!");
                 txtcodigo.setText("");
                 txtcpf.requestFocusInWindow();
             }
@@ -921,8 +940,8 @@ public class FrmFuncionarios extends javax.swing.JFrame {
         } else if (txtcodigo.getText().equals("") && !txtcpf.getText().equals("")) {
 
             String cpf = txtcpf.getText();
-            Clientes obj = new Clientes();
-            ClientesDAO dao = new ClientesDAO();
+            Funcionarios obj = new Funcionarios();
+            FuncionariosDAO dao = new FuncionariosDAO();
 
             obj = dao.consultaPorCpf(cpf);
 
@@ -933,6 +952,9 @@ public class FrmFuncionarios extends javax.swing.JFrame {
                 txtrg.setText(obj.getRg());
                 txtcpf.setText(obj.getCpf());
                 txtemail.setText(obj.getEmail());
+                txtsenha.setText(obj.getSenha());
+                txtcargo.setText(obj.getCargo());
+                cbnivel.setSelectedItem(obj.getNivel_acesso());
                 txtfixo.setText(obj.getTelefone());
                 txtcelular.setText(obj.getCelular());
                 txtcep.setText(obj.getCep());
@@ -955,16 +977,21 @@ public class FrmFuncionarios extends javax.swing.JFrame {
     private void txtcepKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcepKeyPressed
         // CARREGANDO CEP NO FORMULARIO
 
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            Clientes obj = new Clientes();
-            ClientesDAO dao = new ClientesDAO();
-            obj = dao.buscaCep(txtcep.getText());
+        try {
+            if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+                Funcionarios obj = new Funcionarios();
+                FuncionariosDAO dao = new FuncionariosDAO();
+                obj = dao.buscaCep(txtcep.getText());
 
-            txtendereco.setText(obj.getEndereco());
-            txtbairro.setText(obj.getBairro());
-            txtcidade.setText(obj.getCidade());
-            cbuf.setSelectedItem(obj.getUf());
-            
+                txtendereco.setText(obj.getEndereco());
+                txtbairro.setText(obj.getBairro());
+                txtcidade.setText(obj.getCidade());
+                cbuf.setSelectedItem(obj.getUf());
+
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "COLOQUE O ENDEREÇO MANUALMENTE E CONTINUE COM O CADASTRO!");
         }
 
     }//GEN-LAST:event_txtcepKeyPressed
