@@ -12,7 +12,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 public class ClientesDAO {
-
+//CONEXÃO COM BANCO
     private Connection con;
 
     public ClientesDAO() {
