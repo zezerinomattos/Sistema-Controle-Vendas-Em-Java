@@ -18,7 +18,6 @@ public class ClientesDAO {
 
     public ClientesDAO() {
         this.con = new ConnectionFactory().getConnection();
-
     }
 
 //  METODO CADASTRAR CLIENTE

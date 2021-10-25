@@ -33,7 +33,7 @@ public class FuncionariosDAO {
             stmt.setString(2, obj.getRg());
             stmt.setString(3, obj.getCpf());
             stmt.setString(4, obj.getEmail());
-            stmt.setString(5, obj.getSenha());
+            stmt.setInt(5, obj.getSenha());
             stmt.setString(6, obj.getCargo());
             stmt.setString(7, obj.getNivel_acesso());
             stmt.setString(8, obj.getTelefone());
@@ -79,7 +79,7 @@ public class FuncionariosDAO {
                 obj.setRg(rs.getString("rg"));
                 obj.setCpf(rs.getString("cpf"));
                 obj.setEmail(rs.getString("email"));
-                obj.setSenha(rs.getString("senha"));
+                obj.setSenha(rs.getInt("senha"));
                 obj.setCargo(rs.getString("cargo"));
                 obj.setNivel_acesso(rs.getString("nivel_acesso"));
                 obj.setTelefone(rs.getString("telefone"));
@@ -118,7 +118,7 @@ public class FuncionariosDAO {
             stmt.setString(2, obj.getRg());
             stmt.setString(3, obj.getCpf());
             stmt.setString(4, obj.getEmail());
-            stmt.setString(5, obj.getSenha());
+            stmt.setInt(5, obj.getSenha());
             stmt.setString(6, obj.getCargo());
             stmt.setString(7, obj.getNivel_acesso());
             stmt.setString(8, obj.getTelefone());
@@ -188,7 +188,7 @@ public class FuncionariosDAO {
                 obj.setRg(rs.getString("rg"));
                 obj.setCpf(rs.getString("cpf"));
                 obj.setEmail(rs.getString("email"));
-                obj.setSenha(rs.getString("senha"));
+                obj.setSenha(rs.getInt("senha"));
                 obj.setCargo(rs.getString("cargo"));
                 obj.setNivel_acesso(rs.getString("nivel_acesso"));
                 obj.setTelefone(rs.getString("telefone"));
@@ -235,7 +235,7 @@ public class FuncionariosDAO {
                 obj.setRg(rs.getString("rg"));
                 obj.setCpf(rs.getString("cpf"));
                 obj.setEmail(rs.getString("email"));
-                obj.setSenha(rs.getString("senha"));
+                obj.setSenha(rs.getInt("senha"));
                 obj.setCargo(rs.getString("cargo"));
                 obj.setNivel_acesso(rs.getString("nivel_acesso"));
                 obj.setTelefone(rs.getString("telefone"));
@@ -282,7 +282,7 @@ public class FuncionariosDAO {
                 obj.setRg(rs.getString("rg"));
                 obj.setCpf(rs.getString("cpf"));
                 obj.setEmail(rs.getString("email"));
-                obj.setSenha(rs.getString("senha"));
+                obj.setSenha(rs.getInt("senha"));
                 obj.setCargo(rs.getString("cargo"));
                 obj.setNivel_acesso(rs.getString("nivel_acesso"));
                 obj.setTelefone(rs.getString("telefone"));
@@ -326,7 +326,7 @@ public class FuncionariosDAO {
                 obj.setRg(rs.getString("rg"));
                 obj.setCpf(rs.getString("cpf"));
                 obj.setEmail(rs.getString("email"));
-                obj.setSenha(rs.getString("senha"));
+                obj.setSenha(rs.getInt("senha"));
                 obj.setCargo(rs.getString("cargo"));
                 obj.setNivel_acesso(rs.getString("nivel_acesso"));
                 obj.setTelefone(rs.getString("telefone"));
@@ -368,7 +368,7 @@ public class FuncionariosDAO {
                 obj.setRg(rs.getString("rg"));
                 obj.setCpf(rs.getString("cpf"));
                 obj.setEmail(rs.getString("email"));
-                obj.setSenha(rs.getString("senha"));
+                obj.setSenha(rs.getInt("senha"));
                 obj.setCargo(rs.getString("cargo"));
                 obj.setNivel_acesso(rs.getString("nivel_acesso"));
                 obj.setTelefone(rs.getString("telefone"));

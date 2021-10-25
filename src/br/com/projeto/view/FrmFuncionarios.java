@@ -616,7 +616,7 @@ public class FrmFuncionarios extends javax.swing.JFrame {
             obj.setRg(txtrg.getText());
             obj.setCpf(txtcpf.getText());
             obj.setEmail(txtemail.getText());
-            obj.setSenha(txtsenha.getText());
+            obj.setSenha(Integer.parseInt(txtsenha.getText()));
             obj.setCargo(txtcargo.getText());
             obj.setNivel_acesso(cbnivel.getSelectedItem().toString());
             obj.setTelefone(txtfixo.getText());
@@ -668,7 +668,7 @@ public class FrmFuncionarios extends javax.swing.JFrame {
             obj.setRg(txtrg.getText());
             obj.setCpf(txtcpf.getText());
             obj.setEmail(txtemail.getText());
-            obj.setSenha(txtsenha.getText());
+            obj.setSenha (Integer.parseInt(txtsenha.getText()));
             obj.setCargo(txtcargo.getText());
             obj.setNivel_acesso(cbnivel.getSelectedItem().toString());
             obj.setTelefone(txtfixo.getText());
@@ -918,7 +918,7 @@ public class FrmFuncionarios extends javax.swing.JFrame {
                 txtrg.setText(obj.getRg());
                 txtcpf.setText(obj.getCpf());
                 txtemail.setText(obj.getEmail());
-                txtsenha.setText(obj.getSenha());
+                txtsenha.setText(String.valueOf(obj.getSenha()));
                 txtcargo.setText(obj.getCargo());
                 cbnivel.setSelectedItem(obj.getNivel_acesso());
                 txtfixo.setText(obj.getTelefone());
@@ -952,7 +952,7 @@ public class FrmFuncionarios extends javax.swing.JFrame {
                 txtrg.setText(obj.getRg());
                 txtcpf.setText(obj.getCpf());
                 txtemail.setText(obj.getEmail());
-                txtsenha.setText(obj.getSenha());
+                txtsenha.setText(String.valueOf(obj.getSenha()));
                 txtcargo.setText(obj.getCargo());
                 cbnivel.setSelectedItem(obj.getNivel_acesso());
                 txtfixo.setText(obj.getTelefone());
