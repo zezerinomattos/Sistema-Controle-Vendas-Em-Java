@@ -5,6 +5,9 @@
  */
 package br.com.projeto.view;
 
+import br.com.projeto.dao.FuncionariosDAO;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Administrador
@@ -30,13 +33,13 @@ public class FrmLogin extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtnome = new javax.swing.JTextField();
+        txtemail = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
         txtsenha = new javax.swing.JPasswordField();
         btnEntrar = new javax.swing.JButton();
         btnsair = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Seja bem vindo ao Sistema");
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 204));
@@ -64,9 +67,9 @@ public class FrmLogin extends javax.swing.JFrame {
         );
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel3.setText("Nome:");
+        jLabel3.setText("E-mail:");
 
-        txtnome.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtemail.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel19.setText("Senha:");
@@ -100,7 +103,7 @@ public class FrmLogin extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtnome))
+                        .addComponent(txtemail))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel19)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -123,11 +126,11 @@ public class FrmLogin extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtnome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtemail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel19)
-                    .addComponent(txtsenha, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtsenha, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel19))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -142,7 +145,20 @@ public class FrmLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        // TODO add your handling code here:
+        // ABILITANDO O BOTAO ENTRAR 
+        try {
+            String email;
+            int senha;
+            email = txtemail.getText();
+            senha = Integer.parseInt(txtsenha.getText());
+            
+            FuncionariosDAO dao = new FuncionariosDAO();
+            dao.efetuaLogin(email, senha);
+            this.dispose();
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "ERRO");
+        }
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     private void btnsairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsairActionPerformed
@@ -191,7 +207,7 @@ public class FrmLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txtnome;
+    private javax.swing.JTextField txtemail;
     private javax.swing.JPasswordField txtsenha;
     // End of variables declaration//GEN-END:variables
 }

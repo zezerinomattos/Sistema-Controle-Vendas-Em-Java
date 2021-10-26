@@ -2,6 +2,7 @@ package br.com.projeto.dao;
 
 import br.com.projeto.jdbc.ConnectionFactory;
 import br.com.projeto.model.Funcionarios;
+import br.com.projeto.view.Frmmenu;
 import br.com.projeto.webservices.WebServiceCep;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -410,4 +411,32 @@ public class FuncionariosDAO {
         }
 
     }
+    //METODO PARA EFETUAR LOGIN
+    public void efetuaLogin(String email, int senha){
+        try {
+            //SQL
+            String sql = "select*from tb_funcionarios where email =? and senha =?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, email);
+            stmt.setInt(2, senha);
+            
+            ResultSet rs = stmt.executeQuery();
+            
+            if(rs.next()){
+                //USUARIO LOGOU
+                JOptionPane.showMessageDialog(null, "SEJA BEM VINDO!");
+                Frmmenu tela = new Frmmenu();
+                tela.setVisible(true);
+            }else{
+                //DADOS INCORRETOS
+                JOptionPane.showMessageDialog(null, "USUÁRIO OU SENHA INCORRETA!");            
+            }
+                       
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "ERRO: " + erro);
+  
+        }
+    }
+    
+    
 }
