@@ -2,6 +2,7 @@ package br.com.projeto.dao;
 
 import br.com.projeto.jdbc.ConnectionFactory;
 import br.com.projeto.model.Funcionarios;
+import br.com.projeto.view.FrmLogin;
 import br.com.projeto.view.Frmmenu;
 import br.com.projeto.webservices.WebServiceCep;
 import java.sql.Connection;
@@ -430,7 +431,8 @@ public class FuncionariosDAO {
                 tela.setVisible(true);
             }else{
                 //DADOS INCORRETOS
-                JOptionPane.showMessageDialog(null, "USUÁRIO OU SENHA INCORRETA!");            
+                JOptionPane.showMessageDialog(null, "USUÁRIO OU SENHA INCORRETA!");
+                new FrmLogin().setVisible(true);
             }
                        
         } catch (Exception erro) {
