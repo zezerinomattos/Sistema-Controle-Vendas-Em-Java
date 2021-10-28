@@ -424,8 +424,9 @@ public class FuncionariosDAO {
             
             if(rs.next()){
                 //USUARIO LOGOU
-                JOptionPane.showMessageDialog(null, "SEJA BEM VINDO!");
+                JOptionPane.showMessageDialog(null, "SEJA BEM VINDO! " + rs.getString("nome"));
                 Frmmenu tela = new Frmmenu();
+                tela.usuariologado = rs.getString("nome");
                 tela.setVisible(true);
             }else{
                 //DADOS INCORRETOS
