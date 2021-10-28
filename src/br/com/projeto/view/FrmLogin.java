@@ -158,6 +158,7 @@ public class FrmLogin extends javax.swing.JFrame {
             
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "ERRO");
+            
         }
     }//GEN-LAST:event_btnEntrarActionPerformed
 
