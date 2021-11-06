@@ -26,8 +26,8 @@ public class ProdutosDAO {
 
 //          1 passo - criar o comando sql  
             String sql = "insert into tb_produtos(descricao,preco_custo, "
-                    + "porcentagem_aumento,preco_venda,lucro_real,qtd_estoque,for_id,marca,tamanho,corPredominante, "
-                    + "corDetalhes,obs,entrada,saida)"
+                    + "porcentagem_aumento,preco_venda,lucro_real,qtd_estoque,marca,tamanho,corPredominante, "
+                    + "corDetalhes,obs,entrada,saida,for_id) "
                     + "Values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 //          2 passo - conectar o banco de dados e organizar os comandos SQL            
@@ -38,14 +38,15 @@ public class ProdutosDAO {
             stmt.setDouble(4, obj.getPreco());
             stmt.setDouble(5, obj.getLucro());
             stmt.setInt(6, obj.getQtd_estoque());
-            stmt.setInt(7, obj.getFornecedor().getId());
-            stmt.setString(8, obj.getMarca());
-            stmt.setString(9, obj.getTamanho());
-            stmt.setString(10, obj.getCorPredominante());
-            stmt.setString(11, obj.getCorDetalhes());
-            stmt.setString(12, obj.getObs());
-            stmt.setInt(13, obj.getEntrada());
-            stmt.setInt(14, obj.getSaida());
+            
+            stmt.setString(7, obj.getMarca());
+            stmt.setString(8, obj.getTamanho());
+            stmt.setString(9, obj.getCorPredominante());
+            stmt.setString(10, obj.getCorDetalhes());
+            stmt.setString(11, obj.getObs());
+            stmt.setInt(12, obj.getEntrada());
+            stmt.setInt(13, obj.getSaida());
+            stmt.setInt(14, obj.getFornecedor().getId());
 
 //          3 passo - executar o comandos SQL
             stmt.execute();
@@ -65,9 +66,9 @@ public class ProdutosDAO {
 
 //          1 passo - criar o comando sql  
             String sql = "update tb_produtos set descricao=?,preco_custo=?, "
-                    + "porcentagem_aumento=?,preco_venda=?,lucro_real=?,qtd_estoque=? ,for_id=?, "
-                    + "marca=?,tamanho=?,corPredominante=?, "
-                    + "corDetalhes=?,obs=?,entrada=?,saida=?";
+                    + " porcentagem_aumento=?,preco_venda=?,lucro_real=?,qtd_estoque=?, "
+                    + " marca=?,tamanho=?,corPredominante=?, "
+                    + " corDetalhes=?,obs=?,entrada=?,saida=?,for_id=? where id=?";
 
 //          2 passo - conectar o banco de dados e organizar os comandos SQL            
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -77,16 +78,17 @@ public class ProdutosDAO {
             stmt.setDouble(4, obj.getPreco());
             stmt.setDouble(5, obj.getLucro());
             stmt.setInt(6, obj.getQtd_estoque());
-            stmt.setInt(7, obj.getFornecedor().getId());
-            stmt.setString(8, obj.getMarca());
-            stmt.setString(9, obj.getTamanho());
-            stmt.setString(10, obj.getCorPredominante());
-            stmt.setString(11, obj.getCorDetalhes());
-            stmt.setString(12, obj.getObs());
-            stmt.setInt(13, obj.getEntrada());
-            stmt.setInt(14, obj.getSaida());
+            
+            stmt.setString(7, obj.getMarca());
+            stmt.setString(8, obj.getTamanho());
+            stmt.setString(9, obj.getCorPredominante());
+            stmt.setString(10, obj.getCorDetalhes());
+            stmt.setString(11, obj.getObs());
+            stmt.setInt(12, obj.getEntrada());
+            stmt.setInt(13, obj.getSaida());
+            stmt.setInt(14, obj.getFornecedor().getId());
 
-            stmt.setInt(5, obj.getId());
+            stmt.setInt(15, obj.getId());
 
 //          3 passo - executar o comandos SQL
             stmt.execute();
@@ -166,7 +168,7 @@ public class ProdutosDAO {
             }
             return lista;
         } catch (SQLException erro) {
-            JOptionPane.showMessageDialog(null, "ErroTestando: " + erro);
+            JOptionPane.showMessageDialog(null, "Erro: " + erro);
             return null;
         }
 
@@ -285,11 +287,11 @@ public class ProdutosDAO {
             List<Produtos> lista = new ArrayList<>();
 
             //Criando o comando sql, organizando e executando
-            String sql = "select p.id, p.descricao, p.preco_custo, p.porcentagem_aumento, p.preco_venda,"
+            String sql = "select p.id, p.descricao, p.preco_custo, p.porcentagem_aumento, p.preco_venda, "
                     + " p.lucro_real, p.qtd_estoque, "
-                    + "p.marca,p.tamanho,p.corPredominante, "
-                    + "p.corDetalhes,p.obs,p.entrada,p.saida, f.nome from tb_produtos as p "
-                    + "inner join tb_fornecedores as f on(p.for_id = f.id) where inner join tb_fornecedores as f on(p.for_id = f.id) like?";
+                    + " p.marca,p.tamanho,p.corPredominante, "
+                    + " p.corDetalhes,p.obs,p.entrada,p.saida, f.nome from tb_produtos as p "
+                    + " inner join tb_fornecedores as f on(p.for_id = f.id) where f.nome like? ";
 
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, fornecedor);

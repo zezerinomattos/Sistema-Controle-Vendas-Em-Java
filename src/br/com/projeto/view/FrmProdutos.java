@@ -23,19 +23,19 @@ public class FrmProdutos extends javax.swing.JFrame {
             dados.addRow(new Object[]{
                 c.getId(),
                 c.getDescricao(),
-                c.getPreco_custo(),
-                c.getPorcentagem_aumento(),
-                c.getPreco(),
-                c.getLucro(),
-                c.getQtd_estoque(),               
                 c.getMarca(),
-                c.getTamanho(),
                 c.getCorPredominante(),
                 c.getCorDetalhes(),
-                c.getObs(),
-                c.getEntrada(),
-                c.getSaida(),
-                c.getFornecedor().getNome()
+                c.getTamanho(),
+                c.getQtd_estoque(),
+                c.getPreco(),
+                c.getFornecedor().getNome(),
+                c.getPreco_custo(),
+                c.getPorcentagem_aumento(),
+                c.getLucro(),
+                c.getObs()
+            //   c.getEntrada(),
+            //    c.getSaida()
             });
 
         }
@@ -88,10 +88,6 @@ public class FrmProdutos extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtobs = new javax.swing.JTextArea();
-        btnovo = new javax.swing.JButton();
-        btnsalvar = new javax.swing.JButton();
-        btneditar = new javax.swing.JButton();
-        btnexcluir = new javax.swing.JButton();
         painel_tabela = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         txtpesquisaDescricao = new javax.swing.JTextField();
@@ -103,6 +99,10 @@ public class FrmProdutos extends javax.swing.JFrame {
         txtpesquisaCod = new javax.swing.JTextField();
         btnatualizar = new javax.swing.JButton();
         txtpesquisaFornecedor = new javax.swing.JTextField();
+        btnovo = new javax.swing.JButton();
+        btnsalvar = new javax.swing.JButton();
+        btneditar = new javax.swing.JButton();
+        btnexcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -196,6 +196,11 @@ public class FrmProdutos extends javax.swing.JFrame {
         });
 
         txtporcentagem.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtporcentagem.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtporcentagemKeyPressed(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel8.setText("%:");
@@ -206,6 +211,11 @@ public class FrmProdutos extends javax.swing.JFrame {
                 txtentradaActionPerformed(evt);
             }
         });
+        txtentrada.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtentradaKeyPressed(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel9.setText("Entrada:");
@@ -214,6 +224,11 @@ public class FrmProdutos extends javax.swing.JFrame {
         jLabel10.setText("Saída:");
 
         txtsaida.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtsaida.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtsaidaKeyPressed(evt);
+            }
+        });
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel11.setText("Marca:");
@@ -241,38 +256,6 @@ public class FrmProdutos extends javax.swing.JFrame {
         txtobs.setColumns(20);
         txtobs.setRows(5);
         jScrollPane2.setViewportView(txtobs);
-
-        btnovo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnovo.setText("+ NOVO");
-        btnovo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnovoActionPerformed(evt);
-            }
-        });
-
-        btnsalvar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnsalvar.setText("SALVAR");
-        btnsalvar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnsalvarActionPerformed(evt);
-            }
-        });
-
-        btneditar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btneditar.setText("EDITAR");
-        btneditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btneditarActionPerformed(evt);
-            }
-        });
-
-        btnexcluir.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnexcluir.setText("EXCLUIR");
-        btnexcluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnexcluirActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout painel_dadosLayout = new javax.swing.GroupLayout(painel_dados);
         painel_dados.setLayout(painel_dadosLayout);
@@ -307,11 +290,8 @@ public class FrmProdutos extends javax.swing.JFrame {
                                         .addComponent(jLabel8)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(txtporcentagem, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(painel_dadosLayout.createSequentialGroup()
-                                        .addGroup(painel_dadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtqtdestoque, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtsaida, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(197, 197, 197))))
+                                    .addComponent(txtqtdestoque, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtsaida, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(painel_dadosLayout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel13)
@@ -350,21 +330,9 @@ public class FrmProdutos extends javax.swing.JFrame {
                         .addGap(92, 92, 92)
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtmarca, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(painel_dadosLayout.createSequentialGroup()
-                        .addGap(267, 267, 267)
-                        .addComponent(btnovo, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnsalvar)
-                        .addGap(18, 18, 18)
-                        .addComponent(btneditar)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnexcluir)))
-                .addContainerGap(285, Short.MAX_VALUE))
+                        .addComponent(txtmarca, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(369, Short.MAX_VALUE))
         );
-
-        painel_dadosLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btneditar, btnexcluir, btnovo, btnsalvar});
-
         painel_dadosLayout.setVerticalGroup(
             painel_dadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painel_dadosLayout.createSequentialGroup()
@@ -422,20 +390,11 @@ public class FrmProdutos extends javax.swing.JFrame {
                         .addGroup(painel_dadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtlucro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(painel_dadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel13)
                     .addComponent(cbfornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(painel_dadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnovo, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnsalvar)
-                    .addComponent(btneditar)
-                    .addComponent(btnexcluir))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        painel_dadosLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btneditar, btnexcluir, btnovo, btnsalvar});
 
         jTabbedPane1.addTab("Dados do Produto", painel_dados);
 
@@ -464,7 +423,7 @@ public class FrmProdutos extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Código", "Descrição", "Marca", "Cor Pred.", "Detalhes", "Tamanho", "Qtd. Estoque", "Preço", "Fornecedor"
+                "Código", "Descrição", "Marca", "Cor Pred.", "Detalhes", "Tamanho", "Qtd. Estoque", "Preço", "Fornecedor", "Custo", "%", "Lucro", "Obs"
             }
         ));
         tabelaProdutos.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -550,11 +509,43 @@ public class FrmProdutos extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnatualizar)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(94, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Consulta de Produtos", painel_tabela);
+
+        btnovo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnovo.setText("+ NOVO");
+        btnovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnovoActionPerformed(evt);
+            }
+        });
+
+        btnsalvar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnsalvar.setText("SALVAR");
+        btnsalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnsalvarActionPerformed(evt);
+            }
+        });
+
+        btneditar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btneditar.setText("EDITAR");
+        btneditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btneditarActionPerformed(evt);
+            }
+        });
+
+        btnexcluir.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnexcluir.setText("EXCLUIR");
+        btnexcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnexcluirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -562,15 +553,36 @@ public class FrmProdutos extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jTabbedPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(276, 276, 276)
+                .addComponent(btnovo, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnsalvar)
+                .addGap(18, 18, 18)
+                .addComponent(btneditar)
+                .addGap(18, 18, 18)
+                .addComponent(btnexcluir)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btneditar, btnexcluir, btnovo, btnsalvar});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 559, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnovo, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnsalvar)
+                    .addComponent(btneditar)
+                    .addComponent(btnexcluir))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btneditar, btnexcluir, btnovo, btnsalvar});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -584,16 +596,30 @@ public class FrmProdutos extends javax.swing.JFrame {
             obj.setPorcentagem_aumento(Integer.parseInt(txtporcentagem.getText()));
             obj.setPreco(Double.parseDouble(txtprecoVenda.getText()));
             obj.setLucro(Double.parseDouble(txtlucro.getText()));
-            obj.setQtd_estoque(Integer.parseInt(txtqtdestoque.getText()));
 
             obj.setMarca(txtmarca.getText());
             obj.setTamanho(txttamanho.getText());
             obj.setCorPredominante(txtcorpredominante.getText());
             obj.setCorDetalhes(txtcordetalhes.getText());
             obj.setObs(txtobs.getText());
-            obj.setEntrada(Integer.parseInt(txtentrada.getText()));
-            obj.setSaida(Integer.parseInt(txtsaida.getText()));
 
+            if (!txtentrada.getText().equals("") && txtsaida.getText().equals("")) {
+
+                obj.setEntrada(Integer.parseInt(txtentrada.getText()));
+                int estoque = Integer.parseInt(txtqtdestoque.getText());
+                int entrada = Integer.parseInt(txtentrada.getText());
+                int res = estoque + entrada;
+                txtqtdestoque.setText(String.valueOf(res));
+                obj.setQtd_estoque(Integer.parseInt(txtqtdestoque.getText()));
+
+            } else if (!txtsaida.getText().equals("") && txtentrada.getText().equals("")) {
+                obj.setSaida(Integer.parseInt(txtsaida.getText()));
+                int estoque = Integer.parseInt(txtqtdestoque.getText());
+                int saida = Integer.parseInt(txtsaida.getText());
+                int res = estoque - saida;
+                txtqtdestoque.setText(String.valueOf(res));
+                obj.setQtd_estoque(Integer.parseInt(txtqtdestoque.getText()));
+            }
             obj.setId(Integer.parseInt(txtcodigo.getText()));
 
             Fornecedores f = new Fornecedores();
@@ -605,9 +631,10 @@ public class FrmProdutos extends javax.swing.JFrame {
             dao.alterarProdutos(obj);
             new Utilitarios().LimpaTela(painel_dados);
             txtcodigo.setEditable(true);
+            txtobs.setText("");
 
         } catch (Exception erro) {
-            JOptionPane.showMessageDialog(null, erro);
+            JOptionPane.showMessageDialog(null, "Erro: " + erro);
         }
 
     }//GEN-LAST:event_btneditarActionPerformed
@@ -624,6 +651,7 @@ public class FrmProdutos extends javax.swing.JFrame {
 
             new Utilitarios().LimpaTela(painel_dados);
             txtcodigo.setEditable(true);
+            txtobs.setText("");
 
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, erro);
@@ -632,6 +660,7 @@ public class FrmProdutos extends javax.swing.JFrame {
 
     private void btnsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalvarActionPerformed
         // BOTAO SALVAR
+
         try {
             Produtos obj = new Produtos();
             obj.setDescricao(txtdescricao.getText());
@@ -639,15 +668,22 @@ public class FrmProdutos extends javax.swing.JFrame {
             obj.setPorcentagem_aumento(Integer.parseInt(txtporcentagem.getText()));
             obj.setPreco(Double.parseDouble(txtprecoVenda.getText()));
             obj.setLucro(Double.parseDouble(txtlucro.getText()));
-            obj.setQtd_estoque(Integer.parseInt(txtqtdestoque.getText()));
 
             obj.setMarca(txtmarca.getText());
             obj.setTamanho(txttamanho.getText());
             obj.setCorPredominante(txtcorpredominante.getText());
             obj.setCorDetalhes(txtcordetalhes.getText());
             obj.setObs(txtobs.getText());
-            obj.setEntrada(Integer.parseInt(txtentrada.getText()));
-            obj.setSaida(Integer.parseInt(txtsaida.getText()));
+
+            //FAZENDO COM QUE O SISTEMA FAÇA ENTRADA PELO CAMPO DE ENTRADA
+            if (!txtentrada.getText().equals("") && txtsaida.getText().equals("") && txtqtdestoque.getText().equals("")) {
+                obj.setEntrada(Integer.parseInt(txtentrada.getText()));
+                obj.setQtd_estoque(Integer.parseInt(txtentrada.getText()));
+            } else if (txtentrada.getText().equals("") && !txtsaida.getText().equals("") && txtqtdestoque.getText().equals("")) {
+                obj.setSaida(Integer.parseInt(txtsaida.getText()));
+                obj.setQtd_estoque(Integer.parseInt(txtsaida.getText()));
+            }
+            //   obj.setQtd_estoque(Integer.parseInt(txtqtdestoque.getText()));
 
             //Criando o objeto fornecedor
             Fornecedores f = new Fornecedores();
@@ -659,9 +695,10 @@ public class FrmProdutos extends javax.swing.JFrame {
 
             new Utilitarios().LimpaTela(painel_dados);
             txtcodigo.setEditable(true);
+            txtobs.setText("");
 
         } catch (Exception erro) {
-            JOptionPane.showMessageDialog(null, erro);
+            JOptionPane.showMessageDialog(null, "Erro: " + erro);
         }
 
     }//GEN-LAST:event_btnsalvarActionPerformed
@@ -683,6 +720,12 @@ public class FrmProdutos extends javax.swing.JFrame {
         txttamanho.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 5).toString());
         txtqtdestoque.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 6).toString());
         txtprecoVenda.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 7).toString());
+        txtcusto.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 9).toString());
+        txtporcentagem.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 10).toString());
+        txtlucro.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 11).toString());
+        txtobs.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 12).toString());
+        //   txtentrada.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 13).toString());
+        //   txtsaida.setText(tabelaProdutos.getValueAt(tabelaProdutos.getSelectedRow(), 14).toString());
 
         //CRIANDO O OBJETO DO TIPO FORNECDOR PRA PODER ALTERAR
         Fornecedores f = new Fornecedores();
@@ -715,19 +758,19 @@ public class FrmProdutos extends javax.swing.JFrame {
                     dados.addRow(new Object[]{
                         c.getId(),
                         c.getDescricao(),
-                        c.getPreco_custo(),
-                        c.getPorcentagem_aumento(),
-                        c.getPreco(),
-                        c.getLucro(),
-                        c.getQtd_estoque(),                       
                         c.getMarca(),
-                        c.getTamanho(),
                         c.getCorPredominante(),
                         c.getCorDetalhes(),
-                        c.getObs(),
-                        c.getEntrada(),
-                        c.getSaida(),
+                        c.getTamanho(),
+                        c.getQtd_estoque(),
+                        c.getPreco(),
                         c.getFornecedor().getNome(),
+                        c.getPreco_custo(),
+                        c.getPorcentagem_aumento(),
+                        c.getLucro(),
+                        c.getObs()
+                    //   c.getEntrada(),
+                    //    c.getSaida()
                     });
 
                 }
@@ -752,19 +795,19 @@ public class FrmProdutos extends javax.swing.JFrame {
                     dados.addRow(new Object[]{
                         c.getId(),
                         c.getDescricao(),
-                        c.getPreco_custo(),
-                        c.getPorcentagem_aumento(),
-                        c.getPreco(),
-                        c.getLucro(),
-                        c.getQtd_estoque(),                      
                         c.getMarca(),
-                        c.getTamanho(),
                         c.getCorPredominante(),
                         c.getCorDetalhes(),
-                        c.getObs(),
-                        c.getEntrada(),
-                        c.getSaida(),
+                        c.getTamanho(),
+                        c.getQtd_estoque(),
+                        c.getPreco(),
                         c.getFornecedor().getNome(),
+                        c.getPreco_custo(),
+                        c.getPorcentagem_aumento(),
+                        c.getLucro(),
+                        c.getObs()
+                    //   c.getEntrada(),
+                    //    c.getSaida()
                     });
                 }
 
@@ -787,19 +830,19 @@ public class FrmProdutos extends javax.swing.JFrame {
                     dados.addRow(new Object[]{
                         c.getId(),
                         c.getDescricao(),
-                        c.getPreco_custo(),
-                        c.getPorcentagem_aumento(),
-                        c.getPreco(),
-                        c.getLucro(),
-                        c.getQtd_estoque(),                       
                         c.getMarca(),
-                        c.getTamanho(),
                         c.getCorPredominante(),
                         c.getCorDetalhes(),
-                        c.getObs(),
-                        c.getEntrada(),
-                        c.getSaida(),
+                        c.getTamanho(),
+                        c.getQtd_estoque(),
+                        c.getPreco(),
                         c.getFornecedor().getNome(),
+                        c.getPreco_custo(),
+                        c.getPorcentagem_aumento(),
+                        c.getLucro(),
+                        c.getObs()
+                    //   c.getEntrada(),
+                    //    c.getSaida()
                     });
 
                 }
@@ -826,20 +869,20 @@ public class FrmProdutos extends javax.swing.JFrame {
             for (Produtos c : lista) {
                 dados.addRow(new Object[]{
                     c.getId(),
-                    c.getDescricao(),
-                    c.getPreco_custo(),
-                    c.getPorcentagem_aumento(),
-                    c.getPreco(),
-                    c.getLucro(),
-                    c.getQtd_estoque(),                   
-                    c.getMarca(),
-                    c.getTamanho(),
-                    c.getCorPredominante(),
-                    c.getCorDetalhes(),
-                    c.getObs(),
-                    c.getEntrada(),
-                    c.getSaida(),
-                    c.getFornecedor().getNome(),
+                        c.getDescricao(),
+                        c.getMarca(),
+                        c.getCorPredominante(),
+                        c.getCorDetalhes(),
+                        c.getTamanho(),
+                        c.getQtd_estoque(),
+                        c.getPreco(),
+                        c.getFornecedor().getNome(),
+                        c.getPreco_custo(),
+                        c.getPorcentagem_aumento(),
+                        c.getLucro(),
+                        c.getObs()
+                    //   c.getEntrada(),
+                    //    c.getSaida()
                 });
             }
 
@@ -855,10 +898,11 @@ public class FrmProdutos extends javax.swing.JFrame {
     }//GEN-LAST:event_txtpesquisaCodKeyPressed
 
     private void btnatualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnatualizarActionPerformed
-        //NOTÃO PARA ATUALIZAR TABELA
+        //BOTÃO PARA ATUALIZAR TABELA
         listar();
         new Utilitarios().LimpaTela(painel_dados);
         new Utilitarios().LimpaTela(painel_tabela);
+        txtobs.setText("");
         txtcodigo.setEditable(true);
 
     }//GEN-LAST:event_btnatualizarActionPerformed
@@ -866,6 +910,7 @@ public class FrmProdutos extends javax.swing.JFrame {
     private void btnovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnovoActionPerformed
         // BOTAO NOVO
         new Utilitarios().LimpaTela(painel_dados);
+        txtobs.setText("");
         txtcodigo.setEditable(true);
     }//GEN-LAST:event_btnovoActionPerformed
 
@@ -889,14 +934,14 @@ public class FrmProdutos extends javax.swing.JFrame {
                 txtprecoVenda.setText(String.valueOf(obj.getPreco()));
                 txtlucro.setText(String.valueOf(obj.getLucro()));
                 txtqtdestoque.setText(String.valueOf(obj.getQtd_estoque()));
-                
+
                 txtmarca.setText(obj.getMarca());
                 txttamanho.setText(obj.getTamanho());
                 txtcorpredominante.setText(obj.getCorPredominante());
                 txtcordetalhes.setText(obj.getCorDetalhes());
                 txtobs.setText(obj.getObs());
-                txtentrada.setText(String.valueOf(obj.getEntrada()));
-                txtsaida.setText(String.valueOf(obj.getSaida()));
+                //    txtentrada.setText(String.valueOf(obj.getEntrada()));
+                //    txtsaida.setText(String.valueOf(obj.getSaida()));
 
                 Fornecedores f = new Fornecedores();
                 FornecedoresDAO fdao = new FornecedoresDAO();
@@ -914,8 +959,8 @@ public class FrmProdutos extends javax.swing.JFrame {
         txtcodigo.setEditable(false);
 
     }//GEN-LAST:event_btnbuscaActionPerformed
-    
-    
+
+
     private void txtpesquisaFornecedorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpesquisaFornecedorKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtpesquisaFornecedorKeyPressed
@@ -925,13 +970,13 @@ public class FrmProdutos extends javax.swing.JFrame {
         FornecedoresDAO dao = new FornecedoresDAO();
         List<Fornecedores> listaFornecedores = dao.listaFornecedores();
 
-        cbfornecedor.removeAllItems();
+        cbfornecedor.removeAll();
 
         for (Fornecedores f : listaFornecedores) {
             cbfornecedor.addItem(f);
         }
     }//GEN-LAST:event_cbfornecedorAncestorAdded
-    private void cbfornecedorMouseClicked(java.awt.event.MouseEvent evt) {                                          
+    private void cbfornecedorMouseClicked(java.awt.event.MouseEvent evt) {
         // CARREGANDO O COMBOBOX FORNECEDORES
         FornecedoresDAO dao = new FornecedoresDAO();
         List<Fornecedores> listadefornecedores = dao.listaFornecedores();
@@ -941,8 +986,9 @@ public class FrmProdutos extends javax.swing.JFrame {
             cbfornecedor.addItem(f);
         }
 
-    } 
-    
+    }
+
+
     private void txtprecoVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtprecoVendaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtprecoVendaActionPerformed
@@ -950,6 +996,47 @@ public class FrmProdutos extends javax.swing.JFrame {
     private void txtentradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtentradaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtentradaActionPerformed
+
+    private void txtporcentagemKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtporcentagemKeyPressed
+        // PUXANDO METODO PORCENTAGEM:
+        try {
+            String val;
+            double resultado = 0.0, diferenca = 0.0, valor2 = 0.0;
+            double valor1 = Double.parseDouble(txtcusto.getText());
+            valor2 = Double.parseDouble(txtporcentagem.getText());
+
+            resultado = valor1 * (valor2 / 100) + valor1;
+            diferenca = resultado - valor1;
+            val = String.valueOf(resultado);
+            txtprecoVenda.setText(val);
+            txtlucro.setText(String.valueOf(diferenca));
+
+        } catch (Exception e) {
+        }
+
+    }//GEN-LAST:event_txtporcentagemKeyPressed
+
+    private void txtentradaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtentradaKeyPressed
+        // FAZENDO A ENTRADA DO PRODUTO NO ESTOQUE
+//        try {
+//            int valor1 = Integer.parseInt(txtentrada.getText());
+//            int valor2 = Integer.parseInt(txtqtdestoque.getText());
+//            int resultado = valor2 + valor1;
+//            txtqtdestoque.setText(String.valueOf(resultado));
+//        } catch (Exception e) {
+//        }
+    }//GEN-LAST:event_txtentradaKeyPressed
+
+    private void txtsaidaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtsaidaKeyPressed
+//        // FAZENDO A SAIDA DO PRODUTO NO ESTOQUE
+//        try {
+//            int valor1 = Integer.parseInt(txtsaida.getText());
+//            int valor2 = Integer.parseInt(txtqtdestoque.getText());
+//            int resultado = valor2 - valor1;
+//            txtqtdestoque.setText(String.valueOf(resultado));
+//        } catch (Exception e) {
+//        }
+    }//GEN-LAST:event_txtsaidaKeyPressed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

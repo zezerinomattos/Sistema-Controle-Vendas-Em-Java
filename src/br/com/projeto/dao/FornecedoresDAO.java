@@ -364,7 +364,7 @@ public class FornecedoresDAO {
         try {
 
             //Criando o comando sql, organizando e executando
-            String sql = "select*from tb_fornecedoress where nome = ?";
+            String sql = "select*from tb_fornecedores where nome = ?";
 
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, nome);

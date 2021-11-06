@@ -13,6 +13,5 @@ public class Utilitarios {
                 ((JTextField)component).setText(null);
             }
         }
-    }
-    
+    } 
 }
