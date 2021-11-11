@@ -16,6 +16,12 @@ public class FrmPagamentos extends javax.swing.JFrame {
      */
     public FrmPagamentos() {
         initComponents();
+        
+        txtcartao.setText("0");
+        txtdinheiro.setText("0");
+        txtcheque.setText("0");
+        txttroco.setText("0");
+        txtdinheiro.requestFocusInWindow();
     }
 
     /**
@@ -104,6 +110,11 @@ public class FrmPagamentos extends javax.swing.JFrame {
 
         btnfinalizar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btnfinalizar.setText("Finalizar Venda");
+        btnfinalizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnfinalizarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -170,6 +181,24 @@ public class FrmPagamentos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txttotalvendaActionPerformed
 
+    private void btnfinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnfinalizarActionPerformed
+        // BOTÃO FINALIZAR
+        double pcartao, pcheque, pdinheiro, totalpago, totalvenda, troco;
+        pcartao = Double.parseDouble(txtcartao.getText());
+        pcheque = Double.parseDouble(txtcheque.getText());
+        pdinheiro = Double.parseDouble(txtdinheiro.getText());
+        totalvenda = Double.parseDouble(txttotalvenda.getText());
+        
+        //CALCULAR O TOTAL E O TROCO 
+        totalpago = pcartao + pcheque + pdinheiro;        
+        troco = totalpago - totalvenda;
+        
+        txttroco.setText(String.valueOf(troco));
+        
+        
+        
+    }//GEN-LAST:event_btnfinalizarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -206,7 +235,6 @@ public class FrmPagamentos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnbusca;
     private javax.swing.JButton btnfinalizar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -218,7 +246,7 @@ public class FrmPagamentos extends javax.swing.JFrame {
     private javax.swing.JTextField txtcartao;
     private javax.swing.JTextField txtcheque;
     private javax.swing.JTextField txtdinheiro;
-    private javax.swing.JTextField txttotalvenda;
+    public javax.swing.JTextField txttotalvenda;
     private javax.swing.JTextField txttroco;
     // End of variables declaration//GEN-END:variables
 }
