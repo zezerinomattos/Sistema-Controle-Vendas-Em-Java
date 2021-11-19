@@ -439,14 +439,14 @@ public class FuncionariosDAO {
 
                 //CASO O USUARIO SEJA DO TIPO ADMIN
                 if (rs.getString("nivel_acesso").equals("Administrador") || rs.getString("nivel_acesso").equals("Gerente")) {
-                    JOptionPane.showMessageDialog(null, "SEJA BEM VINDO! " + rs.getString("nome"));
+                    JOptionPane.showMessageDialog(null, "Seja bem vindo, " + rs.getString("nome")+"!");
                     Frmmenu tela = new Frmmenu();
                     tela.usuariologado = rs.getString("nome");
                     tela.setVisible(true);
 
                 } //CASO O USUARIO SEJA DO TIPO 
                 else if (rs.getString("nivel_acesso").equals("Vendedor")) {
-                    JOptionPane.showMessageDialog(null, "SEJA BEM VINDO! " + rs.getString("nome"));
+                    JOptionPane.showMessageDialog(null, "Seja bem vindo, " + rs.getString("nome")+"!");
                     Frmmenu tela = new Frmmenu();
                     tela.usuariologado = rs.getString("nome");
                     

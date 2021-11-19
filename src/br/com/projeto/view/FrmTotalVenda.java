@@ -29,7 +29,7 @@ public class FrmTotalVenda extends javax.swing.JFrame {
         txtdata = new javax.swing.JFormattedTextField();
         btnconsultar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 204));
 
@@ -189,8 +189,6 @@ public class FrmTotalVenda extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JFormattedTextField txtdata;
-    private javax.swing.JFormattedTextField txtdatainicio;
-    private javax.swing.JFormattedTextField txtdatainicio1;
     private javax.swing.JTextField txtotaldavenda;
     // End of variables declaration//GEN-END:variables
 }

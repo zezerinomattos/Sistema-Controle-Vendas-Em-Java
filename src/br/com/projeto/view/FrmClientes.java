@@ -52,7 +52,7 @@ public class FrmClientes extends javax.swing.JFrame {
         jProgressBar1 = new javax.swing.JProgressBar();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jTabbedPane3 = new javax.swing.JTabbedPane();
         painel_dados = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         txtcodigo = new javax.swing.JTextField();
@@ -99,7 +99,7 @@ public class FrmClientes extends javax.swing.JFrame {
         btneditar = new javax.swing.JButton();
         btnexcluir = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
@@ -365,7 +365,7 @@ public class FrmClientes extends javax.swing.JFrame {
                 .addContainerGap(65, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Dados pessoais", painel_dados);
+        jTabbedPane3.addTab("Dados pessoais", painel_dados);
 
         painel_tabela.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -387,7 +387,6 @@ public class FrmClientes extends javax.swing.JFrame {
             }
         });
 
-        tabelaClientes.setBackground(new java.awt.Color(255, 255, 255));
         tabelaClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -483,7 +482,7 @@ public class FrmClientes extends javax.swing.JFrame {
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Consulta de clientes", painel_tabela);
+        jTabbedPane3.addTab("Consulta de clientes", painel_tabela);
 
         btnovo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnovo.setText("+ NOVO");
@@ -522,7 +521,7 @@ public class FrmClientes extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane3)
             .addGroup(layout.createSequentialGroup()
                 .addGap(247, 247, 247)
                 .addComponent(btnovo, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -542,7 +541,7 @@ public class FrmClientes extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTabbedPane1)
+                .addComponent(jTabbedPane3)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnovo, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -555,6 +554,7 @@ public class FrmClientes extends javax.swing.JFrame {
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btneditar, btnexcluir, btnovo, btnsalvar});
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btneditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditarActionPerformed
@@ -644,7 +644,7 @@ public class FrmClientes extends javax.swing.JFrame {
 
     private void tabelaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaClientesMouseClicked
         // PEGA OS DADOS
-        jTabbedPane1.setSelectedIndex(0);
+        jTabbedPane3.setSelectedIndex(0);
         txtcodigo.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 0).toString());
         txtnome.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 1).toString());
         txtrg.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 2).toString());
@@ -979,7 +979,7 @@ public class FrmClientes extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    public javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JPanel painel_dados;
     private javax.swing.JPanel painel_tabela;
     private javax.swing.JTable tabelaClientes;
