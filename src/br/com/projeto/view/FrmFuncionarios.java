@@ -259,7 +259,7 @@ public class FrmFuncionarios extends javax.swing.JFrame {
         jLabel21.setText("Nível de Acesso:");
 
         cbnivel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cbnivel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Usuário", "Administrador", " " }));
+        cbnivel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Gerente", "Financeiro", "Vendedor", "Caixa", " ", " " }));
 
         javax.swing.GroupLayout painel_dadosFuncLayout = new javax.swing.GroupLayout(painel_dadosFunc);
         painel_dadosFunc.setLayout(painel_dadosFuncLayout);
@@ -438,7 +438,6 @@ public class FrmFuncionarios extends javax.swing.JFrame {
             }
         });
 
-        tabelaFuncionarios.setBackground(new java.awt.Color(255, 255, 255));
         tabelaFuncionarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 

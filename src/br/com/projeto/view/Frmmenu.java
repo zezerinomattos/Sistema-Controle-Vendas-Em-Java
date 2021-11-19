@@ -46,7 +46,7 @@ public class Frmmenu extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        menu_controlefuncionarios = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
@@ -54,8 +54,8 @@ public class Frmmenu extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
+        menu_posicaododia = new javax.swing.JMenuItem();
+        menu_controledevendas = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem9 = new javax.swing.JMenuItem();
@@ -122,8 +122,8 @@ public class Frmmenu extends javax.swing.JFrame {
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/funcionarios.png"))); // NOI18N
         jMenu2.setText("Funcionários");
 
-        jMenuItem2.setText("Controle de Funcionários");
-        jMenu2.add(jMenuItem2);
+        menu_controlefuncionarios.setText("Controle de Funcionários");
+        jMenu2.add(menu_controlefuncionarios);
 
         jMenuBar1.add(jMenu2);
 
@@ -152,11 +152,11 @@ public class Frmmenu extends javax.swing.JFrame {
         jMenuItem6.setText("Abrir PDV");
         jMenu4.add(jMenuItem6);
 
-        jMenuItem7.setText("Posição do Dia");
-        jMenu4.add(jMenuItem7);
+        menu_posicaododia.setText("Posição do Dia");
+        jMenu4.add(menu_posicaododia);
 
-        jMenuItem8.setText("Histórico de Vendas");
-        jMenu4.add(jMenuItem8);
+        menu_controledevendas.setText("Histórico de Vendas");
+        jMenu4.add(menu_controledevendas);
         jMenu4.add(jSeparator1);
 
         jMenuBar1.add(jMenu4);
@@ -243,17 +243,17 @@ public class Frmmenu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JLabel lblusuario;
+    public javax.swing.JMenuItem menu_controledevendas;
+    public javax.swing.JMenuItem menu_controlefuncionarios;
+    public javax.swing.JMenuItem menu_posicaododia;
     private javax.swing.JDesktopPane painel_desktop;
     // End of variables declaration//GEN-END:variables
 }

@@ -14,13 +14,14 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 public class FuncionariosDAO {
+
     // CONEXAO COM BANCO
     private Connection con;
 
     public FuncionariosDAO() {
         this.con = new ConnectionFactory().getConnection();
     }
-    
+
     //CADASTRAR FUNCIONARIO
     public void cadastrarFuncionarios(Funcionarios obj) {
         try {
@@ -58,6 +59,7 @@ public class FuncionariosDAO {
         }
 
     }
+
     //  METODO LISTAR FUNCIONARIOS
     public List<Funcionarios> listaFuncionarios() {
 
@@ -106,6 +108,7 @@ public class FuncionariosDAO {
 
     }
 //  METODO ALTERAR FUNCIONARIOS
+
     public void alterarFuncionarios(Funcionarios obj) {
 
         try {
@@ -145,6 +148,7 @@ public class FuncionariosDAO {
 
     }
 //  METODO EXCLUIR FUNCIONARIOS
+
     public void excluirFucionarios(Funcionarios obj) {
 
         try {
@@ -166,6 +170,7 @@ public class FuncionariosDAO {
         }
 
     }
+
     //METODO BUSCAR FUNCIONARIOS POR NOME
     public List<Funcionarios> buscaFuncionarioPorNome(String nome) {
 
@@ -212,7 +217,8 @@ public class FuncionariosDAO {
             JOptionPane.showMessageDialog(null, "Erro: " + erro);
             return null;
         }
-    }    
+    }
+
     //BUSCAR CLIENTE POR CPF
     public List<Funcionarios> buscaFuncionariosPorCpf(String cpf) {
 
@@ -260,6 +266,7 @@ public class FuncionariosDAO {
             return null;
         }
     }
+
     //BUSCAR CLIENTE POR CODIGO ID
     public List<Funcionarios> buscaFuncionarioPorCod(int id) {
 
@@ -306,7 +313,8 @@ public class FuncionariosDAO {
             JOptionPane.showMessageDialog(null, "Erro: " + erro);
             return null;
         }
-    }    
+    }
+
     //METODO CONSULTA FUNCIONARIOS POR CPF
     public Funcionarios consultaPorCpf(String cpf) {
 
@@ -349,6 +357,7 @@ public class FuncionariosDAO {
         }
 
     }
+
     //METODO CONSULTA FUNCIONARIOS POR CODIGO
     public Funcionarios consultaPorCod(int id) {
 
@@ -390,8 +399,9 @@ public class FuncionariosDAO {
             return null;
         }
 
-    }    
-        //BUSCA CEP
+    }
+    //BUSCA CEP
+
     public Funcionarios buscaCep(String cep) {
 
         WebServiceCep webServiceCep = WebServiceCep.searchCep(cep);
@@ -407,39 +417,58 @@ public class FuncionariosDAO {
         } else {
 //            JOptionPane.showMessageDialog(null, "Erro numero: " + webServiceCep.getResulCode());
 //            JOptionPane.showMessageDialog(null, "Descrição do erro: " + webServiceCep.getResultText());
-              JOptionPane.showMessageDialog(null, "CEP NÃO ENCONTRADO, VERIFIQUE SUA CONEXÃO COM A INTERNET");
+            JOptionPane.showMessageDialog(null, "CEP NÃO ENCONTRADO, VERIFIQUE SUA CONEXÃO COM A INTERNET");
             return null;
         }
 
     }
+
     //METODO PARA EFETUAR LOGIN
-    public void efetuaLogin(String email, int senha){
+    public void efetuaLogin(String email, int senha) {
         try {
             //SQL
             String sql = "select*from tb_funcionarios where email =? and senha =?";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, email);
             stmt.setInt(2, senha);
-            
+
             ResultSet rs = stmt.executeQuery();
-            
-            if(rs.next()){
+
+            if (rs.next()) {
                 //USUARIO LOGOU
-                JOptionPane.showMessageDialog(null, "SEJA BEM VINDO! " + rs.getString("nome"));
-                Frmmenu tela = new Frmmenu();
-                tela.usuariologado = rs.getString("nome");
-                tela.setVisible(true);
-            }else{
+
+                //CASO O USUARIO SEJA DO TIPO ADMIN
+                if (rs.getString("nivel_acesso").equals("Administrador") || rs.getString("nivel_acesso").equals("Gerente")) {
+                    JOptionPane.showMessageDialog(null, "SEJA BEM VINDO! " + rs.getString("nome"));
+                    Frmmenu tela = new Frmmenu();
+                    tela.usuariologado = rs.getString("nome");
+                    tela.setVisible(true);
+
+                } //CASO O USUARIO SEJA DO TIPO 
+                else if (rs.getString("nivel_acesso").equals("Vendedor")) {
+                    JOptionPane.showMessageDialog(null, "SEJA BEM VINDO! " + rs.getString("nome"));
+                    Frmmenu tela = new Frmmenu();
+                    tela.usuariologado = rs.getString("nome");
+                    
+                    //DESABILITAR OS MENUS
+                    //tela.menu_posicaododia.setEnabled(false);
+                    tela.menu_posicaododia.setVisible(false);
+                    tela.menu_controledevendas.setVisible(false);
+                    tela.menu_controlefuncionarios.setVisible(false);
+                    
+                    tela.setVisible(true);
+                }
+
+            } else {
                 //DADOS INCORRETOS
                 JOptionPane.showMessageDialog(null, "USUÁRIO OU SENHA INCORRETA!");
                 new FrmLogin().setVisible(true);
             }
-                       
+
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, "ERRO: " + erro);
-  
+
         }
     }
-    
-    
+
 }
