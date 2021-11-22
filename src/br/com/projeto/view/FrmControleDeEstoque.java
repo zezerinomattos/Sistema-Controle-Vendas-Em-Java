@@ -147,7 +147,7 @@ public class FrmControleDeEstoque extends javax.swing.JFrame {
         });
 
         btnatualizar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnatualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/projeto/images/refresh.png"))); // NOI18N
+        btnatualizar.setText("Atualizar");
         btnatualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnatualizarActionPerformed(evt);
@@ -206,7 +206,7 @@ public class FrmControleDeEstoque extends javax.swing.JFrame {
                         .addComponent(btnpesquisar)
                         .addGap(18, 18, 18)
                         .addComponent(btnadicionar)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnatualizar)
                 .addContainerGap())
         );

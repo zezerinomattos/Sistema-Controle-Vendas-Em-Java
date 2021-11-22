@@ -17,7 +17,7 @@ public class FrmClientes extends javax.swing.JFrame {
         List<Clientes> lista = dao.listaClientes();
         DefaultTableModel dados = (DefaultTableModel) tabelaClientes.getModel();
         dados.setNumRows(0);
-
+        
         for (Clientes c : lista) {
             dados.addRow(new Object[]{
                 c.getId(),
@@ -416,7 +416,7 @@ public class FrmClientes extends javax.swing.JFrame {
         });
 
         btnatualizar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnatualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/projeto/images/refresh.png"))); // NOI18N
+        btnatualizar.setText("Atualizar");
         btnatualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnatualizarActionPerformed(evt);
@@ -479,7 +479,7 @@ public class FrmClientes extends javax.swing.JFrame {
                 .addComponent(btnatualizar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         jTabbedPane3.addTab("Consulta de clientes", painel_tabela);

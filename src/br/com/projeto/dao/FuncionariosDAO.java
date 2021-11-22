@@ -5,6 +5,7 @@ import br.com.projeto.model.Funcionarios;
 import br.com.projeto.view.FrmLogin;
 import br.com.projeto.view.Frmmenu;
 import br.com.projeto.webservices.WebServiceCep;
+import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -427,7 +428,7 @@ public class FuncionariosDAO {
     public void efetuaLogin(String email, int senha) {
         try {
             //SQL
-            String sql = "select*from tb_funcionarios where email =? and senha =?";
+            String sql = "select*from tb_funcionarios where email = ? and senha = ? ";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, email);
             stmt.setInt(2, senha);
@@ -438,24 +439,25 @@ public class FuncionariosDAO {
                 //USUARIO LOGOU
 
                 //CASO O USUARIO SEJA DO TIPO ADMIN
-                if (rs.getString("nivel_acesso").equals("Administrador") || rs.getString("nivel_acesso").equals("Gerente")) {
-                    JOptionPane.showMessageDialog(null, "Seja bem vindo, " + rs.getString("nome")+"!");
+                if (rs.getString("nivel_acesso").equals("Administrador")) {
+                    JOptionPane.showMessageDialog(null, "Seja bem vindo!");
                     Frmmenu tela = new Frmmenu();
                     tela.usuariologado = rs.getString("nome");
                     tela.setVisible(true);
 
-                } //CASO O USUARIO SEJA DO TIPO 
-                else if (rs.getString("nivel_acesso").equals("Vendedor")) {
-                    JOptionPane.showMessageDialog(null, "Seja bem vindo, " + rs.getString("nome")+"!");
+                    //CASO O USUARIO SEJA DO TIPO 
+                } else if (rs.getString("nivel_acesso").equals("Vendedor")) {
+
+                    JOptionPane.showMessageDialog(null, "Seja bem vindo, " + rs.getString("nome") + "!");
                     Frmmenu tela = new Frmmenu();
                     tela.usuariologado = rs.getString("nome");
-                    
+
                     //DESABILITAR OS MENUS
                     //tela.menu_posicaododia.setEnabled(false);
                     tela.menu_posicaododia.setVisible(false);
                     tela.menu_controledevendas.setVisible(false);
                     tela.menu_controlefuncionarios.setVisible(false);
-                    
+
                     tela.setVisible(true);
                 }
 
@@ -466,7 +468,7 @@ public class FuncionariosDAO {
             }
 
         } catch (Exception erro) {
-            JOptionPane.showMessageDialog(null, "ERRO: " + erro);
+            JOptionPane.showMessageDialog(null, "ERRO: esta aqui! " + erro);
 
         }
     }

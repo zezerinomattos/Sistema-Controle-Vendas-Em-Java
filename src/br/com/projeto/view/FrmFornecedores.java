@@ -397,7 +397,7 @@ public class FrmFornecedores extends javax.swing.JFrame {
         });
 
         btnatualizar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnatualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/projeto/images/refresh.png"))); // NOI18N
+        btnatualizar.setText("Atualizar");
         btnatualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnatualizarActionPerformed(evt);
@@ -460,7 +460,7 @@ public class FrmFornecedores extends javax.swing.JFrame {
                 .addComponent(btnatualizar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Consulta de Fornecedores", painel_tabela);

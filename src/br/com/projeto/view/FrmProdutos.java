@@ -447,7 +447,7 @@ public class FrmProdutos extends javax.swing.JFrame {
         });
 
         btnatualizar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnatualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/projeto/images/refresh.png"))); // NOI18N
+        btnatualizar.setText("Atualizar");
         btnatualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnatualizarActionPerformed(evt);
@@ -510,7 +510,7 @@ public class FrmProdutos extends javax.swing.JFrame {
                 .addComponent(btnatualizar)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Consulta de Produtos", painel_tabela);

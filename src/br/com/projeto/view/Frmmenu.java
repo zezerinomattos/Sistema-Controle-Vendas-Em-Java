@@ -5,6 +5,7 @@
  */
 package br.com.projeto.view;
 
+import br.com.projeto.model.BackGround;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -31,15 +32,7 @@ public class Frmmenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ImageIcon icon = new ImageIcon(getClass().getResource("/images/fundo.jpg"));
-        Image image = icon.getImage();
-        painel_desktop = new javax.swing.JDesktopPane(){
-
-            public void paintComponent(Graphics g){
-                g.drawImage(image, 0,0, getWidth(),getHeight(),this);
-            }
-
-        };
+        Deskpainel = new BackGround() ;
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         lblusuario = new javax.swing.JLabel();
@@ -68,7 +61,13 @@ public class Frmmenu extends javax.swing.JFrame {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
             }
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
         });
+
+        Deskpainel.setBackground(new java.awt.Color(255, 255, 255));
+        Deskpainel.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setText("Usuário Logado:");
 
@@ -97,17 +96,17 @@ public class Frmmenu extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        painel_desktop.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        Deskpainel.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout painel_desktopLayout = new javax.swing.GroupLayout(painel_desktop);
-        painel_desktop.setLayout(painel_desktopLayout);
-        painel_desktopLayout.setHorizontalGroup(
-            painel_desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout DeskpainelLayout = new javax.swing.GroupLayout(Deskpainel);
+        Deskpainel.setLayout(DeskpainelLayout);
+        DeskpainelLayout.setHorizontalGroup(
+            DeskpainelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        painel_desktopLayout.setVerticalGroup(
-            painel_desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painel_desktopLayout.createSequentialGroup()
+        DeskpainelLayout.setVerticalGroup(
+            DeskpainelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DeskpainelLayout.createSequentialGroup()
                 .addGap(0, 337, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -230,11 +229,11 @@ public class Frmmenu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(painel_desktop)
+            .addComponent(Deskpainel, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(painel_desktop)
+            .addComponent(Deskpainel)
         );
 
         pack();
@@ -319,6 +318,11 @@ public class Frmmenu extends javax.swing.JFrame {
         tela.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // CARREGAR IMG DO BACKGROUND PERSONALISADA
+        ((BackGround)Deskpainel).setImagem("/Images/fundotela.jpg");
+    }//GEN-LAST:event_formWindowOpened
+
     /**
      * @param args the command line arguments
      */
@@ -355,6 +359,7 @@ public class Frmmenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDesktopPane Deskpainel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -376,6 +381,5 @@ public class Frmmenu extends javax.swing.JFrame {
     public javax.swing.JMenuItem menu_controledevendas;
     public javax.swing.JMenuItem menu_controlefuncionarios;
     public javax.swing.JMenuItem menu_posicaododia;
-    private javax.swing.JDesktopPane painel_desktop;
     // End of variables declaration//GEN-END:variables
 }
